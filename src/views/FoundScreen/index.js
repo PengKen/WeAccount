@@ -7,23 +7,29 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import {scaleSize} from "./src/utils/px2pt";
-import AppNavigator from './src/views/config'
-
-
+import {Platform, StyleSheet, Text, View,Image} from 'react-native';
+import { renderIcon } from '../config'
 type Props = {};
-export default class App extends Component<Props> {
+export default class FoundScreen extends Component<Props> {
+  static navigationOptions = {
+    tabBarIcon: (tab) =>  renderIcon(tab,'FOUND')
+  };
+
   render() {
     return (
-      <AppNavigator />
+      <View style={styles.container}>
+        <Text>Found</Text>
+
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height:scaleSize(662),
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
     position:'relative',
     backgroundColor:'#EDEDED',
     zIndex:1

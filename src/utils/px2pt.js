@@ -31,7 +31,7 @@
    */
 
   export function setSpText(size:Number) {
-    var scaleWidth = 1000/ w2;
+    var scaleWidth = screenW / w2;
     var scaleHeight = screenH / h2;
     var scale = Math.min(scaleWidth, scaleHeight);
     size = Math.round((size * scale + 0.5) * pixelRatio / fontScale);
