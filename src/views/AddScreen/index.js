@@ -28,12 +28,10 @@ import {Store} from "../../../App"
 type Props = {};
 import Mask  from '../../components/Mask'
 import {connect} from "react-redux";
-
+import maskAction from '../../store/actions/maskAction'
 const tapTab  = (obj,props) => {
-  const isShowMask = Store.getState().mask.isShowMask
-  console.log(isShowMask)
-  Store.dispatch({type:isShowMask ? 'noShow' : 'show'})
-  // Store.dispatch({type:!(Store.getState().mask.isShowMask)})
+  const isShowMask = Store.getState().mask.isShowMask //当前mask的状态
+  Store.dispatch(maskAction(isShowMask))
 }
 class AddScreen extends Component<Props> {
   static navigationOptions = ({navigation}) => {
@@ -45,13 +43,7 @@ class AddScreen extends Component<Props> {
     }
 
   };
-  componentWillMount(){
-    console.log("add")
-  }
-  componentDidMount(){
-    this.props.navigation.setParams({isShowMask:this.props.isShowMask})
-    console.log(this.props.navigation.getParam('isShowMask'))
-  }
+
   render() {
     return (
       <View>

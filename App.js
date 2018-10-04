@@ -12,7 +12,7 @@ import {scaleSize} from "./src/utils/px2pt";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import AppReducer from './src/reducers';
+import AppReducer from './src/store/reducers';
 import { AppNavigator, middleware } from './src/views/config';
 
 const Store = createStore(AppReducer, applyMiddleware(middleware));
