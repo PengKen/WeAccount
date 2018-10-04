@@ -47,8 +47,6 @@ class AddScreen extends Component<Props> {
   render() {
     return (
       <View>
-        <Text>AAA</Text>
-        <Mask/>
       </View>
 
 

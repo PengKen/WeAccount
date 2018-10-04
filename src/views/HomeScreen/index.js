@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View,Image} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
 import AuthButton from '../../components/NavButton'
+import {scaleSize} from "../../utils/px2pt";
 
 type Props = {};
 
@@ -30,9 +31,11 @@ export default class HomeScreen extends Component<Props> {
     return (
 
         <View style={styles.container}>
-          <Text>Home</Text>
-          <AuthButton />
-        <Mask />
+          <View style={styles.header}>
+
+          </View>
+          <Mask />
+          {/* Mask浮层只需要在一个view中注册就可以了 */}
         </View>
 
 
@@ -42,19 +45,12 @@ export default class HomeScreen extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'#EDEDED',
-    flex:1,
-    justifyContent:'center'
+    backgroundColor:'#EDEDED'
 
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  header:{
+    width:scaleSize(375),
+    height:scaleSize(184),
+    backgroundColor:'#4A90E2'
+  }
 });

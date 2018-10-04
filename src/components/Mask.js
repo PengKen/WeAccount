@@ -78,7 +78,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.BuyAnim.opacity,
         {
-          delay:saleOpacity === 1 ? 0 :500,
+          delay:saleOpacity === 1 ? 200 :500,
           toValue:saleOpacity,
           duration:0
         }
@@ -101,7 +101,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.ContactAnim.opacity,
         {
-          delay:saleOpacity === 1 ? 0 :650,
+          delay:saleOpacity === 1 ? 400 :650,
           toValue:saleOpacity,
           duration:0
         }
