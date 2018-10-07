@@ -10,12 +10,11 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
-import CountUp from 'react-countup';
 import AuthButton from '../../components/NavButton'
 import {scaleSize} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 const { StatusBarManager } = NativeModules;
-
+import CountUp from '../../components/CountUp'
 StatusBarManager.getHeight((statusBarHeight)=>{
   console.log(statusBarHeight)
 })
@@ -31,7 +30,8 @@ type Props = {};
 
   };
   componentDidMount(){
-    console.log(this.refs.abc.getSize())
+    let count = new CountUp('balance','200','3000',2,2000)
+    count.start()
   }
   componentWillMount(){
     console.log(" " +
@@ -49,7 +49,7 @@ type Props = {};
         >
         </StatusBar>
         <View style={styles.header}>
-          <Text>abc</Text>
+          <Text>{this.props.balance}</Text>
         </View>
         <Mask />
         {/* Mask浮层只需要在一个view中注册就可以了 */}
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   header:{
     width:scaleSize(375),
     height:scaleSize(184),
-    backgroundColor:'#4A90E2'
+    backgroundColor:'#4A90E2',
+
   }
 });
 

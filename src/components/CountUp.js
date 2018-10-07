@@ -9,7 +9,7 @@
 // decimals = number of decimal places, default 0
 // duration = duration of animation in seconds, default 2
 // options = optional object of options (see below)
-
+import {Store} from '../../App'
 var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
   var self = this;
@@ -49,22 +49,22 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
   // polyfill for browsers without native support
   // by Opera engineer Erik Möller
   var lastTime = 0;
-  var vendors = ['webkit', 'moz', 'ms', 'o'];
-  for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-    window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-    window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-  }
-  if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = function(callback, element) {
+  // var vendors = ['webkit', 'moz', 'ms', 'o'];
+  // for(var x = 0; x < vendors.length && !requestAnimationFrame; ++x) {
+  //   requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+  //   cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+  // }
+  if (!requestAnimationFrame) {
+    requestAnimationFrame = function(callback, element) {
       var currTime = new Date().getTime();
       var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-      var id = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
+      var id = setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
       lastTime = currTime + timeToCall;
       return id;
     };
   }
-  if (!window.cancelAnimationFrame) {
-    window.cancelAnimationFrame = function(id) {
+  if (!cancelAnimationFrame) {
+    cancelAnimationFrame = function(id) {
       clearTimeout(id);
     };
   }
@@ -100,6 +100,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
   }
   // Robert Penner's easeOutExpo
   function easeOutExpo(t, b, c, d) {
+    //[progress,startValue,length,duration]
     return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b;
   }
   function ensureNumber(n) {
@@ -110,7 +111,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
     if (self.initialized) return true;
 
     self.error = '';
-    self.d = (typeof target === 'string') ? document.getElementById(target) : target;
+    self.d = (typeof target === 'string') ? Store.getState().balance : target;
     if (!self.d) {
       self.error = '[CountUp] target is null or undefined'
       return false;
@@ -144,8 +145,9 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
       this.d.textContent = result;
     }
     else {
-      this.d.innerHTML = result;
-    }
+      // this.d.innerHTML = result;
+      Store.dispatch({type:'add',payload:result})
+     }
   };
 
   self.count = function(timestamp) {
@@ -242,3 +244,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
   // format startVal on initialization
   if (self.initialize()) self.printValue(self.startVal);
 };
+
+
+
+export default CountUp
