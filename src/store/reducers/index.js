@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
 import mask from './mask'
+import balance from './balance'
 import { RootNavigator } from '../../views/config';
 
 /**
@@ -85,7 +86,8 @@ function auth(state = initialAuthState, action) {
 const AppReducer = combineReducers({
   nav,
   // auth,
-  mask
+  mask,
+  balance
 });
 
 export default AppReducer;

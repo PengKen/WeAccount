@@ -11,7 +11,9 @@ import {Platform, StyleSheet, Text, View,Image} from 'react-native';
 import { HOME,ACCOUNT,FOUND,PERSONAL,ADD }from '../../icons/buttonNavigation'
 import { renderIcon } from '../config'
 import {Store} from "../../../App"
-
+import Mask  from '../../components/Mask'
+import {connect} from "react-redux";
+import maskAction from '../../store/actions/maskAction'
 /**
  * Store是一个对象
  *
@@ -26,9 +28,7 @@ import {Store} from "../../../App"
     }
  */
 type Props = {};
-import Mask  from '../../components/Mask'
-import {connect} from "react-redux";
-import maskAction from '../../store/actions/maskAction'
+
 const tapTab  = (obj,props) => {
   const isShowMask = Store.getState().mask.isShowMask //当前mask的状态
   Store.dispatch(maskAction(isShowMask))

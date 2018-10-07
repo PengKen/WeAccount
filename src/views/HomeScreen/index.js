@@ -7,15 +7,21 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image} from 'react-native';
+import {Platform, StyleSheet, Text, View,Image,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
+import CountUp from 'react-countup';
 import AuthButton from '../../components/NavButton'
 import {scaleSize} from "../../utils/px2pt";
+import { connect } from 'react-redux';
+const { StatusBarManager } = NativeModules;
 
+StatusBarManager.getHeight((statusBarHeight)=>{
+  console.log(statusBarHeight)
+})
 type Props = {};
 
-export default class HomeScreen extends Component<Props> {
+ class HomeScreen extends Component<Props> {
   static navigationOptions = {
     tabBarLabel: '首页',
     tabBarIcon: (tab)=>renderIcon(tab,'HOME'),
@@ -24,25 +30,45 @@ export default class HomeScreen extends Component<Props> {
     //tabBarVisible:false
 
   };
+  componentDidMount(){
+    console.log(this.refs.abc.getSize())
+  }
   componentWillMount(){
-    console.log("home")
+    console.log(" " +
+      "fucking home")
   }
   render() {
     return (
-
-        <View style={styles.container}>
-          <View style={styles.header}>
-
-          </View>
-          <Mask />
-          {/* Mask浮层只需要在一个view中注册就可以了 */}
+      <View style={styles.container} ref="abc">
+        <StatusBar
+          animated={true} //指定状态栏的变化是否应以动画形式呈现。目前支持这几种样式：backgroundColor, barStyle和hidden
+          hidden={false}  //是否隐藏状态栏。
+          backgroundColor={'green'} //状态栏的背景色
+          translucent={true}//指定状态栏是否透明。设置为true时，应用会在状态栏内部绘制（即所谓“沉浸式”——被状态栏遮住一部分）。常和带有半透明背景色的状态栏搭配使用。
+          barStyle={'light-content'} // enum('default', 'light-content', 'dark-content')
+        >
+        </StatusBar>
+        <View style={styles.header}>
+          <Text>abc</Text>
         </View>
+        <Mask />
+        {/* Mask浮层只需要在一个view中注册就可以了 */}
+      </View>
 
-
-    );
+ );
+  }
+}
+const mapStateToProps = (state) => {
+  return {
+    balance:state.balance.balance
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleMask: (type) => dispatch({type})
+  }
+}
 const styles = StyleSheet.create({
   container: {
     backgroundColor:'#EDEDED'
@@ -54,3 +80,5 @@ const styles = StyleSheet.create({
     backgroundColor:'#4A90E2'
   }
 });
+
+ export default connect(mapStateToProps,mapDispatchToProps)(HomeScreen)
