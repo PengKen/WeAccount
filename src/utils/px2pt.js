@@ -34,9 +34,11 @@
     var scaleWidth = screenW / w2;
     var scaleHeight = screenH / h2;
     var scale = Math.min(scaleWidth, scaleHeight);
+
     size = Math.round((size * scale + 0.5) * pixelRatio / fontScale);
     //fontScale只对安卓有效，在ios中等同于pixelRatio
-    return size;
+    console.log(fontScale,pixelRatio)
+    return size / defaultStatus;
   }
   /**
    * 屏幕适配,缩放size
