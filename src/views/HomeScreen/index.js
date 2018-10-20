@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
 import AuthButton from '../../components/NavButton'
@@ -17,7 +17,8 @@ const { StatusBarManager } = NativeModules;
 import CountUp from '../../components/CountUp'
 
 //头部的icon
-import {Triangle,Search,Setting,More} from "../../icons/Home";
+import {Triangle,Search,Setting} from "../../icons/Home";
+import {SmallMore} from "../../icons/common";
 
 StatusBarManager.getHeight((statusBarHeight)=>{
   console.log(statusBarHeight)
@@ -40,6 +41,11 @@ type Props = {};
   componentWillMount(){
 
   }
+
+  test = () => {
+    this.props.navigation.dispatch({type:'fuck'})
+  }
+
   render() {
     return (
       <View style={styles.container} >
@@ -60,7 +66,10 @@ type Props = {};
             </View>
             <View style={styles.more}>
               <Search style={{paddingRight:scaleSize(10)}}/>
-              <Setting />
+              <TouchableOpacity onPress={this.test}>
+                <Setting />
+              </TouchableOpacity>
+
             </View>
 
 
@@ -84,13 +93,13 @@ type Props = {};
           <View style={styles.remind}>
             <View style={styles.contentHeader}>
               <Text>{"近期提醒"}</Text>
-              <More style={styles.contentHeaderMore}></More>
+              <SmallMore style={styles.contentHeaderMore}></SmallMore>
             </View>
           </View>
           <View style={styles.recentlyAccounts}>
             <View style={styles.contentHeader}>
               <Text>{"最近三日账单"}</Text>
-              <More style={styles.contentHeaderMore}></More>
+              <SmallMore style={styles.contentHeaderMore}></SmallMore>
             </View>
           </View>
         </ScrollView>
@@ -114,7 +123,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'#EDEDED',
+    backgroundColor:'#F5F5F5',
     flex:1
   },
   header:{
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
     alignSelf:'center',
   },
   remind:{
-    backgroundColor:"white",
+    backgroundColor:"#F5F5F5",
     height:scaleSize(300),
     borderRadius:scaleSize(3),
     shadowOpacity:0.5,
@@ -206,7 +215,7 @@ const styles = StyleSheet.create({
     shadowColor:"#000"
   },
   recentlyAccounts:{
-    backgroundColor:"white",
+    backgroundColor:"#F5F5F5",
     height:scaleSize(500),
     borderRadius:scaleSize(3),
     shadowOpacity:0.5,
