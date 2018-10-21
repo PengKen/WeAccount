@@ -57,30 +57,10 @@ const Setting = props => {
   )
 }
 
-const More = props => {
-  return (
 
-    <View style={props.style}>
-      <Svg width="17" height="5" viewBox="0 0 17 5">
-        <G id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <G id="首页" transform="translate(-342.000000, -201.000000)" fill="#9B9B9B">
-            <G id="Group-6" transform="translate(342.000000, 201.000000)">
-              <Circle id="Oval-2" cx="2.125" cy="2.125" r="2.125"></Circle>
-              <Circle id="Oval-2" cx="8.925" cy="2.125" r="2.125"></Circle>
-              <Circle id="Oval-2" cx="14.875" cy="2.125" r="2.125"></Circle>
-            </G>
-          </G>
-        </G>
-      </Svg>
-    </View>
-
-
-  )
-}
 export {
   Triangle,
   Search,
-  Setting,
-  More
+  Setting
 
 }

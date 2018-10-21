@@ -9,13 +9,17 @@ import PersonalScreen from './PersonalScreen'
 import React from "react";
 import {createBottomTabNavigator, createStackNavigator,TabNavigator} from 'react-navigation'
 import { HOME,ACCOUNT,FOUND,PERSONAL,ADD }from '../icons/buttonNavigation'
-import { connect } from 'react-redux';
+  import { connect } from 'react-redux';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 const middleware = createReactNavigationReduxMiddleware(
+  /*
+    所有的路由跳转都会经过这些中间件
+   */
   'root',
+  // state => state.nav,
   state => state.nav
 );
 const switchNav = function (component:string ,currentTarget:string) {
@@ -41,8 +45,10 @@ export function renderIcon(tab, component) {
     return switchNav(component,'NO_SELCETED')
   }
 }
+import {FilterDrawer} from './AccountScreen/filter'
 
-const RootNavigator = createBottomTabNavigator(
+
+const TabNavigatorScreen = createBottomTabNavigator(
   {
     HOME: {
       screen: HomeScreen,
@@ -112,10 +118,33 @@ const RootNavigator = createBottomTabNavigator(
 
   });
 
+const RootNavigator = createStackNavigator(
+  {
+    Main:{
+      screen:TabNavigatorScreen,
+      navigationOptions:{
+        header:null,
 
+      }
+    },
+    // Drawer:{
+    //   screen:FilterDrawer,
+    //   navigationOptions:{
+    //     drawerWidth: 100,
+    //     // header:null,
+    //
+    //   }
+    // },
+  },
+
+)
 const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');
-const mapStateToProps = state => ({
-  state: state.nav,
+const mapStateToProps = (state) => ({
+  /*
+     reducers需要在此注册，内部的navigation-action才能生效
+   */
+  state:state.nav
+  // accountIndex:state.accountIndex
 });
 const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
-export { RootNavigator, AppNavigator, middleware };
+export { RootNavigator, AppNavigator, middleware,TabNavigatorScreen };

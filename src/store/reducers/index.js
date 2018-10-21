@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions,DrawerActions } from 'react-navigation';
 import mask from './mask'
 import balance from './balance'
-import { RootNavigator } from '../../views/config';
+import {renderIcon, RootNavigator, TabNavigatorScreen} from '../../views/config';
 
 /**
  *  Navigation-state 指的是 object{ index ,routes:[]  }
@@ -28,7 +28,7 @@ import { RootNavigator } from '../../views/config';
    *
    */
 
-const firstAction = RootNavigator.router.getActionForPathAndParams('HOME');
+const firstAction = RootNavigator.router.getActionForPathAndParams('Main');
 
 const firstNavState = RootNavigator.router.getStateForAction(firstAction);
 
@@ -44,18 +44,43 @@ const initialNavState = RootNavigator.router.getStateForAction(
 );
 
 function nav(state = initialNavState, action) {
-  let nextState;
+  let nextState ;
+
   switch (action.type) {
-    case 'Login':
+    /*
+        筛选抽屉
+     */
+    case 'Filter':
+      TabNavigatorScreen.navigationOptions = ({ navigation }) => {
+
+        return {
+          ...navigation,
+          tabBarVisible:false
+        };
+      };
       nextState = RootNavigator.router.getStateForAction(
-        NavigationActions.back(),
+        DrawerActions.toggleDrawer(),
+        state
+      )
+      break
+    /*
+      账单
+     */
+    case 'Account':
+
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Account' }),
         state
       );
       break;
-    case 'Logout2':
+      /*
+        报表
+       */
+
+    case 'Report':
 
       nextState = RootNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'PERSONAL' }),
+        NavigationActions.navigate({ routeName: 'Report' }),
         state
       );
       console.log(nextState)
@@ -64,9 +89,12 @@ function nav(state = initialNavState, action) {
       nextState = RootNavigator.router.getStateForAction(action, state);
       break;
   }
-
-  return nextState || state;
+  console.log(nextState)
+   return nextState || state;
 }
+
+
+
 
 const initialAuthState = { isLoggedIn: false };
 
@@ -81,13 +109,47 @@ function auth(state = initialAuthState, action) {
   }
 }
 
+function fuck(state = initialNavState, action) {
+  let nextState ;
+  switch (action.type) {
+    /*
+      账单
+     */
+    case 'fuck':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Account' }),
+        state
+      );
+      break;
+    /*
+      报表
+     */
+
+    case 'fuck2':
+
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Report' }),
+        state
+      );
+      console.log(nextState)
+      break;
+    default:
+      nextState = RootNavigator.router.getStateForAction(action, state);
+      break;
+  }
+
+  return nextState || state;
+}
 
 
 const AppReducer = combineReducers({
+  fuck,
   nav,
+
   // auth,
   mask,
   balance
+
 });
 
 export default AppReducer;
