@@ -11,9 +11,11 @@ import {ScrollView, StyleSheet, Text, View,StatusBar} from 'react-native';
 import {Search,More} from "../../icons/Account";
 import {scaleSize} from "../../utils/px2pt";
 import { connect } from 'react-redux';
+import TopSafeView from '../../components/SafeView'
+import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
+import Route from '../../utils/currentRoute'
 type Props = {};
  class AccountHeader extends Component<Props> {
-
   goToAccount = () => {
     this.props.navigation.dispatch({type:'Account'})
   }
@@ -26,25 +28,26 @@ type Props = {};
     /*
         不在账单导航栏内，header不需要重新render
      */
-   return  nextProps.nav.index == 1 ? true : false
+    const currenRoute =  Route.getCurrentRoute()
+    return  currenRoute === 'Account' || currenRoute === 'Report' ?  true : false
    }
   componentWillMount(){
 
   }
   render() {
-    let RootRoute = this.props.nav ? this.props.nav.routes[this.props.nav.index] : null
-    let currenRoute = null
-    RootRoute.index &&  (currenRoute =  RootRoute.routes[RootRoute.index].routeName)
 
+
+    const currenRoute =  Route.getCurrentRoute()
     return (
       <View style={styles.container}>
+        <TopSafeView/>
         <View style={styles.header}>
           <Search/>
           <View style={styles.headerIndex}>
-            <View style={[styles.headerIndexBills,(currenRoute === 'Account' || currenRoute === null) ? styles.backgroundChooseColor : null]}>
+            <View style={[styles.headerIndexBills,(currenRoute === 'Account') ? styles.backgroundChooseColor : null]}>
               <Text
                 onPress = { this.goToAccount }
-                style={ (currenRoute=== 'Account' || currenRoute === null) ?  styles.textChoosenColor : styles.textColor}>
+                style={ (currenRoute=== 'Account') ?  styles.textChoosenColor : styles.textColor}>
                 {"账单"}
                 </Text>
             </View>
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
 
   },
   header:{
-    marginTop:scaleSize(30),
+    marginTop:IS_IPHONEX ? 0 : scaleSize(30) ,
     flex:0,
     justifyContent:'space-between',
     flexDirection:'row',
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:scaleSize(25),
     alignItems:'center',
-    borderRightColor:"#4A90E2"
+    borderRightColor:THEME_COLOR
 
   },
   headerIndexReport:{

@@ -13,10 +13,8 @@ import {Search, More, Filter} from "../../icons/Account";
 import {SmallMore} from "../../icons/common";
 import {scaleSize} from "../../utils/px2pt";
 import {createDrawerNavigator,SafeAreaView,DrawerItems, createStackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
-import Header from './header'
+import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
 import {connect} from 'react-redux';
-import Account from './index'
-import {TabNavigatorScreen} from '../config'
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -24,26 +22,6 @@ const CustomDrawerContentComponent = (props) => (
     </SafeAreaView>
   </ScrollView>
 );
-const MyNotificationsScreen = ({navigation}) => (
-  <View>
-    <Button
-      onPress={() => navigation.toggleDrawer()}
-      title="MyNotificationsScreen ---> open drawer  "
-    />
-    <Text></Text>
-  </View>
-);
-
-
-MyNotificationsScreen.navigationOptions = {
-  drawerLabel: 'Notifications',
-  drawerIcon: () => (
-    <View>
-      <Text>{"notification"}</Text>
-    </View>
-
-  ),
-}
 
 type Props = {};
 
@@ -65,41 +43,6 @@ class FilterScreen extends Component<Props> {
 }
 
 
-const FilterDrawer = createDrawerNavigator(
-  {
-
-    Notifications:{
-      screen: MyNotificationsScreen
-    },
-
-  },
-  {
-    drawerWidth: 100, // 抽屉宽
-    drawerPosition: 'right', // 抽屉在左边还是右边
-     contentComponent: FilterScreen,  // 自定义抽屉组件
-    contentOptions:{
-      initialRouteName: 'Notifications', // 默认页面组件
-      //activeItemKey:'Notifications',
-   //    labelStyle:{
-   //    //标签样式
-   //    // color : 'red',
-   //    height : 30
-   //  },
-   //  activeTintColor: 'white',  // 选中文字颜色
-   // activeBackgroundColor:'#ff8500', // 选中背景颜色
-   //    inactiveTintColor:'#666',  // 未选中文字颜色
-   //    inactiveBackgroundColor:'#fff', // 未选中背景颜色
-   //    style:{  // 样式
-   //    marginVertical: 0
-   //  },
-   //  //没有作用
-    onItemPress:(route) => {
-      console.log('-------->' + JSON.stringify(route))
-   //  },
-
-    }
-  }
-})
 
 const mapStateToProps = state => ({
   nav: state.nav,
@@ -107,7 +50,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(FilterScreen)
 
-export {FilterScreen, FilterDrawer}
+export {FilterScreen}
 
 const styles = StyleSheet.create({
   container: {
@@ -143,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: scaleSize(25),
     alignItems: 'center',
-    borderRightColor: "#4A90E2"
+    borderRightColor: THEME_COLOR
 
   },
   headerIndexReport: {

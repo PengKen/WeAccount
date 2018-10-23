@@ -12,8 +12,8 @@ import { renderIcon } from '../config'
 import Account from './account'
 import Report from './report'
 import AccountHeader from './header'
-// import {FilterDrawer} from './filter'
-import {createMaterialTopTabNavigator, createDrawerNavigator,createStackNavigator,TabNavigator,TabBarBottom} from 'react-navigation'
+
+import {createMaterialTopTabNavigator, createDrawerNavigator,SafeAreaView,TabNavigator,TabBarBottom} from 'react-navigation'
 type Props = {};
 
 
@@ -55,6 +55,10 @@ class FilterScreen extends Component<Props> {
   }
 }
 
+  /*
+      Account 顶部的tab页面嵌套在Drawer页面中，
+      才可以唤出作为抽屉页的FilterScreen
+  */
 
 const AccountNav = createDrawerNavigator(
   {
@@ -88,7 +92,7 @@ const AccountNav = createDrawerNavigator(
       }
     }
   })
-FilterDrawer.navigationOptions = ({ navigation }) => {
+AccountNav.navigationOptions = ({ navigation }) => {
   /*
   设置了嵌套的导航页的Icon要拿出到navigation中单独配置
  */

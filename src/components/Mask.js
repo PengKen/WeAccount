@@ -1,4 +1,7 @@
-import {AppRegistry, StyleSheet, Text, Modal, Animated, View, TouchableOpacity,TouchableHighlight} from 'react-native';
+import {
+  AppRegistry, StyleSheet, Text, Modal, Animated, View, TouchableOpacity, TouchableHighlight,
+  DeviceInfo
+} from 'react-native';
 import React, {Component} from 'react';
 import {Sell,Buy,Contact } from '../icons/addMenu'
 import {scaleSize} from "../utils/px2pt";
@@ -13,9 +16,18 @@ class Mask extends Component {
       animationType: 'none',//none slide fade
       modalVisible: props.isShowMask,//模态场景是否可见
       transparent: true,//是否透明显示
-      SellAnim: {left:new Animated.Value(153),bottom:new Animated.Value(-14),opacity:new Animated.Value(1)},
-      BuyAnim: {left:new Animated.Value(153),bottom:new Animated.Value(-14),opacity:new Animated.Value(0)},
-      ContactAnim: {right:new Animated.Value(153),bottom:new Animated.Value(-14),opacity:new Animated.Value(0)}
+      SellAnim: {
+            left:new Animated.Value(scaleSize(153)),
+            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(-14) : 20 ),
+            opacity:new Animated.Value(1)},
+      BuyAnim: {
+            left:new Animated.Value(scaleSize(153)),
+            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(-14) : 20),
+            opacity:new Animated.Value(0)},
+      ContactAnim: {
+            right:new Animated.Value(scaleSize(153)),
+            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(-14) : 20),
+            opacity:new Animated.Value(0)}
 
     };
   }
@@ -52,7 +64,7 @@ class Mask extends Component {
         this.state.SellAnim.bottom,
         {
 
-          toValue:scaleSize(saleBottom),
+          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? saleBottom + 34 : saleBottom ),
           duration:500
         }
       ),
@@ -71,7 +83,7 @@ class Mask extends Component {
         this.state.BuyAnim.bottom,
         {
           delay:100,
-          toValue:scaleSize(buyBottom),
+          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? buyBottom + 34 : buyBottom),
           duration:500
         }
       ),
@@ -94,7 +106,7 @@ class Mask extends Component {
         this.state.ContactAnim.bottom,
         {
           delay:200,
-          toValue:scaleSize(contactBottom),
+          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? contactBottom + 34 : contactBottom),
           duration:500
         }
       ),
@@ -207,12 +219,14 @@ const styles = StyleSheet.create({
     height:667,
   },
   menu:{
-    width:375,
-    height:667,
+    width:scaleSize(375),
+    //这里的高度适配有问题
+    height:812,
     backgroundColor:'rgba(0,0,0,0.5)',
     // zIndex:998,
     // bottom:scaleSize(68),
     // backgroundColor:'red'
+
   },
   sell:{
     position:'absolute',

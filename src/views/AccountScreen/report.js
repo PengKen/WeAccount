@@ -12,7 +12,8 @@ import { renderIcon } from '../config'
 import {Search,More,Filter} from "../../icons/Account";
 import {SmallMore} from "../../icons/common";
 import {scaleSize} from "../../utils/px2pt";
-import Echarts from 'native-echarts'
+import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
+
 type Props = {};
 export default class AccountScreen extends Component<Props> {
   static navigationOptions = {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:scaleSize(25),
     alignItems:'center',
-    borderRightColor:"#4A90E2"
+    borderRightColor:THEME_COLOR
 
   },
   headerIndexReport:{
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:scaleSize(17),
     borderRightWidth:1,
-    borderRightColor:"#4A90E2"
+    borderRightColor:THEME_COLOR
   },
   dateSelectYear:{
     flex:1,
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
   },
   contentHeader:{
     borderLeftWidth:4,
-    borderLeftColor:"#4A90E2",
+    borderLeftColor:THEME_COLOR,
     marginLeft:scaleSize(12),
     marginTop:scaleSize(5),
     paddingTop:scaleSize(3),

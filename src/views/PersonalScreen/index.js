@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image} from 'react-native';
 import { renderIcon } from '../config'
+import {scaleSize} from "../../utils/px2pt";
 type Props = {};
 export default class PersonalScreen extends Component<Props> {
 
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position:'relative',
     backgroundColor:'#EDEDED',
-    zIndex:1
+    zIndex:1,
+    height:scaleSize(812)
   },
   welcome: {
     fontSize: 20,

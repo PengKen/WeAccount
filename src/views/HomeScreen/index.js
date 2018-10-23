@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {TouchableOpacity, StyleSheet, Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
+import {TouchableOpacity, StyleSheet, ActivityIndicator,SafeAreaView,Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
 import AuthButton from '../../components/NavButton'
@@ -15,11 +15,12 @@ import {scaleSize,setSpText} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 const { StatusBarManager } = NativeModules;
 import CountUp from '../../components/CountUp'
-
+import HttpUtil from '../../utils/httpUtil'
 //头部的icon
 import {Triangle,Search,Setting} from "../../icons/Home";
 import {SmallMore} from "../../icons/common";
-
+import TopSafeView from '../../components/SafeView'
+import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
 StatusBarManager.getHeight((statusBarHeight)=>{
   console.log(statusBarHeight)
 })
@@ -34,9 +35,16 @@ type Props = {};
     //tabBarVisible:false
 
   };
+  constructor(){
+    super()
+    this.state = {
+      data:null
+    }
+  }
   componentDidMount(){
     let count = new CountUp('balance','200','3000',2,2)
     count.start()
+    HttpUtil.get("http://localhost:3000/info").then(data => this.setState({data:data}) )
   }
   componentWillMount(){
 
@@ -57,7 +65,7 @@ type Props = {};
           barStyle={'light-content'} // enum('default', 'light-content', 'dark-content')
         >
         </StatusBar>
-
+        <TopSafeView style={{backgroundColor:THEME_COLOR}}/>
         <View style={styles.header}>
           <View style={styles.headerButtons}>
             <View style={styles.date}>
@@ -83,28 +91,33 @@ type Props = {};
                 <Text style={styles.tips}>{"本月支出（元）¥ 888.00"}</Text>
               </View >
               <View style ={{paddingTop:scaleSize(10)}}>
-                <Text style={styles.tips}>{"本月收入（元）¥ 88888.00"}</Text>
+                <Text style={styles.tips}>{"本月收入（元）¥ 28222222222222222.00"}</Text>
               </View>
             </View>
           </View>
-
         </View>
         <ScrollView style={styles.content}>
           <View style={styles.remind}>
+
             <View style={styles.contentHeader}>
               <Text>{"近期提醒"}</Text>
               <SmallMore style={styles.contentHeaderMore}></SmallMore>
+            </View>
+            <View style={{backgroundColor:'red',height:scaleSize(100)}}>
+              <ActivityIndicator size="large" color="#0000ff" />
             </View>
           </View>
           <View style={styles.recentlyAccounts}>
             <View style={styles.contentHeader}>
               <Text>{"最近三日账单"}</Text>
               <SmallMore style={styles.contentHeaderMore}></SmallMore>
+              <Text>{this.state.data ? this.state.data.a :'fuck'}</Text>
             </View>
           </View>
         </ScrollView>
         <Mask />
         {/* Mask浮层只需要在一个view中注册就可以了 */}
+
       </View>
 
  );
@@ -130,10 +143,11 @@ const styles = StyleSheet.create({
     width:scaleSize(375),
     height:scaleSize(184),
     backgroundColor:'#4A90E2',
+    marginTop:IS_IPHONEX ? 0 : scaleSize(25),
 
   },
   headerButtons:{
-    marginTop:scaleSize(25),
+    marginTop:scaleSize(5),
     marginLeft:scaleSize(12),
     marginRight:scaleSize(12),
     flex:1,
@@ -153,10 +167,11 @@ const styles = StyleSheet.create({
     alignSelf:'flex-end'
   },
   wrapper:{
-    marginTop:scaleSize(10),
+    marginTop:IS_IPHONEX ? 0 :scaleSize(10),
     marginLeft:scaleSize(12),
     marginRight:scaleSize(12),
     flex:5,
+    width:375
   },
   tips:{
     fontSize:scaleSize(11),
@@ -173,10 +188,11 @@ const styles = StyleSheet.create({
     fontWeight:"700"
   },
   bottomTips:{
+    paddingLeft:scaleSize(5),
     color:'red',
     flex:1,
-    flexDirection:'row',
-    justifyContent:'space-between'
+    flexWrap:'wrap',
+    paddingLeft:scaleSize(5),
   },
   content:{
     paddingTop:scaleSize(5),
@@ -186,7 +202,7 @@ const styles = StyleSheet.create({
   },
   contentHeader:{
     borderLeftWidth:4,
-    borderLeftColor:"#4A90E2",
+    borderLeftColor:THEME_COLOR,
     marginLeft:scaleSize(12),
     marginTop:scaleSize(5),
     paddingTop:scaleSize(3),
