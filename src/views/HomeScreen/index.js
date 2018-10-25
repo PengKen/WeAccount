@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, ActivityIndicator,SafeAreaView,Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
-import AuthButton from '../../components/NavButton'
+import {getAccount} from "../../store/actions/fetchActions";
 import {scaleSize,setSpText} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 const { StatusBarManager } = NativeModules;
@@ -44,14 +44,15 @@ type Props = {};
   componentDidMount(){
     let count = new CountUp('balance','200','3000',2,2)
     count.start()
-    HttpUtil.get("http://localhost:3000/info").then(data => this.setState({data:data}) )
+    console.log(this.props)
+    this.props.getAccount("http://localhost:3000/info")
+    // HttpUtil.get("http://localhost:3000/info").then(data => this.setState({data:data}) )
   }
   componentWillMount(){
 
   }
 
   test = () => {
-    this.props.navigation.dispatch({type:'fuck'})
   }
 
   render() {
@@ -103,8 +104,8 @@ type Props = {};
               <Text>{"近期提醒"}</Text>
               <SmallMore style={styles.contentHeaderMore}></SmallMore>
             </View>
-            <View style={{backgroundColor:'red',height:scaleSize(100)}}>
-              <ActivityIndicator size="large" color="#0000ff" />
+            <View style={{height:scaleSize(100)}}>
+              <ActivityIndicator size="large" />
             </View>
           </View>
           <View style={styles.recentlyAccounts}>
@@ -131,23 +132,24 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleMask: (type) => dispatch({type})
+    toggleMask: (type) => dispatch({type}),
+    getAccount: (url) => dispatch(getAccount("http://localhost:3000/info"))
   }
 }
 const styles = StyleSheet.create({
   container: {
     backgroundColor:'#F5F5F5',
-    flex:1
+    // flex:1
+
   },
   header:{
     width:scaleSize(375),
     height:scaleSize(184),
     backgroundColor:'#4A90E2',
-    marginTop:IS_IPHONEX ? 0 : scaleSize(25),
+    paddingTop:IS_IPHONEX ? 0 : scaleSize(25),
 
   },
   headerButtons:{
-    marginTop:scaleSize(5),
     marginLeft:scaleSize(12),
     marginRight:scaleSize(12),
     flex:1,
@@ -232,7 +234,7 @@ const styles = StyleSheet.create({
   },
   recentlyAccounts:{
     backgroundColor:"#F5F5F5",
-    height:scaleSize(500),
+    // height:scaleSize(500),
     borderRadius:scaleSize(3),
     shadowOpacity:0.5,
     shadowOffset:{

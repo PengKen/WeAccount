@@ -18,15 +18,15 @@ class Mask extends Component {
       transparent: true,//是否透明显示
       SellAnim: {
             left:new Animated.Value(scaleSize(153)),
-            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(-14) : 20 ),
+            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(20) :  scaleSize(-14)),
             opacity:new Animated.Value(1)},
       BuyAnim: {
             left:new Animated.Value(scaleSize(153)),
-            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(-14) : 20),
+            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(20) :scaleSize(-14)),
             opacity:new Animated.Value(0)},
       ContactAnim: {
             right:new Animated.Value(scaleSize(153)),
-            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(-14) : 20),
+            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(20) : scaleSize(-14)),
             opacity:new Animated.Value(0)}
 
     };
@@ -64,7 +64,7 @@ class Mask extends Component {
         this.state.SellAnim.bottom,
         {
 
-          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? saleBottom + 34 : saleBottom ),
+          toValue:scaleSize( DeviceInfo.isIPhoneX_deprecated ? 34 + saleBottom : saleBottom ),
           duration:500
         }
       ),
@@ -83,7 +83,7 @@ class Mask extends Component {
         this.state.BuyAnim.bottom,
         {
           delay:100,
-          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? buyBottom + 34 : buyBottom),
+          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? 34 + buyBottom : buyBottom),
           duration:500
         }
       ),
@@ -106,7 +106,7 @@ class Mask extends Component {
         this.state.ContactAnim.bottom,
         {
           delay:200,
-          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? contactBottom + 34 : contactBottom),
+          toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? 34 + contactBottom : contactBottom),
           duration:500
         }
       ),
@@ -125,6 +125,7 @@ class Mask extends Component {
 
   animatBack = () => {
     this.animateMove({saleLeft:153,saleBottom:-14,saleOpacity:0,buyBottom:-14,contactBottom:-14,contactRight:153})
+
     setTimeout(
       () => {
         this.props.toggleMask(maskAction(this.props.isShowMask))
@@ -144,11 +145,11 @@ class Mask extends Component {
                onShow = {()=>{
                  this.animateMove({
                    saleLeft:63,
-                   saleBottom:72,
+                   saleBottom:100,
                    saleOpacity:1,
-                   buyBottom:106,
+                   buyBottom:150,
                    contactRight:63,
-                   contactBottom:72
+                   contactBottom:100
 
 
                  })
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
   menu:{
     width:scaleSize(375),
     //这里的高度适配有问题
-    height:812,
+    height:scaleSize(667),
     backgroundColor:'rgba(0,0,0,0.5)',
     // zIndex:998,
     // bottom:scaleSize(68),

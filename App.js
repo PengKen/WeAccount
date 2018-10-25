@@ -7,15 +7,14 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import {scaleSize} from "./src/utils/px2pt";
+import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import AppReducer from './src/store/reducers';
 import { AppNavigator, middleware } from './src/views/config';
 
-const Store = createStore(AppReducer, applyMiddleware(middleware));
+const Store = createStore(AppReducer, applyMiddleware(middleware,thunk));
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -28,21 +27,3 @@ export default class App extends Component<Props> {
   }
 }
 export {App,Store}
-const styles = StyleSheet.create({
-  container: {
-    height:scaleSize(662),
-    position:'relative',
-    backgroundColor:'#EDEDED',
-    zIndex:1
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

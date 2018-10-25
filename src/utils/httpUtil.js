@@ -1,7 +1,9 @@
+import {API_URL} from "./constant";
+
 export default class HttpUtil {
   static get(url) {
     return new Promise((resolve,reject) => {
-      fetch(url,{
+      fetch(API_URL+url,{
         // body: JSON.stringify(data), // must match 'Content-Type' header
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, same-origin, *omit

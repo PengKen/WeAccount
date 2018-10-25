@@ -16,7 +16,16 @@
 {
   NSURL *jsCodeLocation;
 
+   //development
+
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+
+  //product
+
+  //jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"./main.jsbundle" withExtension:@"jsbundle"];
+
+
+
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"weAccount"
