@@ -1,9 +1,11 @@
 
-/*
-  返回当前导航组件的routeName
- */
+
 import {Store} from '../../App'
 class Route {
+  /**
+   * @desc 获取当前路由
+   * @return {string}
+   */
   static getCurrentRoute = () => {
     const nav = Store.getState().nav
     return Route.recursive(nav)

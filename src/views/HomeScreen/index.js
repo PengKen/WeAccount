@@ -10,12 +10,12 @@ import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, ActivityIndicator,SafeAreaView,Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
-import {getAccount} from "../../store/actions/fetchActions";
+// import {getAccount} from "../../store/actions/fetchActions";
 import {scaleSize,setSpText} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 const { StatusBarManager } = NativeModules;
 import CountUp from '../../components/CountUp'
-import HttpUtil from '../../utils/httpUtil'
+import Time from '../../utils/time'
 //头部的icon
 import {Triangle,Search,Setting} from "../../icons/Home";
 import {SmallMore} from "../../icons/common";
@@ -45,7 +45,7 @@ type Props = {};
     let count = new CountUp('balance','200','3000',2,2)
     count.start()
     console.log(this.props)
-    this.props.getAccount("http://localhost:3000/info")
+    // this.props.getAccount("http://localhost:3000/info")
     // HttpUtil.get("http://localhost:3000/info").then(data => this.setState({data:data}) )
   }
   componentWillMount(){
@@ -112,7 +112,7 @@ type Props = {};
             <View style={styles.contentHeader}>
               <Text>{"最近三日账单"}</Text>
               <SmallMore style={styles.contentHeaderMore}></SmallMore>
-              <Text>{this.state.data ? this.state.data.a :'fuck'}</Text>
+              <Text>{Time.getCurrentDay()}</Text>
             </View>
           </View>
         </ScrollView>

@@ -10,6 +10,8 @@
 // duration = duration of animation in seconds, default 2
 // options = optional object of options (see below)
 import {Store} from '../../App'
+import {HomeActions} from "../store/actions/fetchActions";
+
 var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
   var self = this;
@@ -111,7 +113,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
     if (self.initialized) return true;
 
     self.error = '';
-    self.d = (typeof target === 'string') ? Store.getState().balance : target;
+    self.d = (typeof target === 'string') ? Store.getState().HOME.balance : target;
     if (!self.d) {
       self.error = '[CountUp] target is null or undefined'
       return false;
@@ -146,7 +148,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
     }
     else {
       // this.d.innerHTML = result;
-      Store.dispatch({type:'add',payload:result})
+      Store.dispatch(HomeActions.getAccountBalance())
      }
   };
 

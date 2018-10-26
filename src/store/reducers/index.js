@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { NavigationActions,DrawerActions } from 'react-navigation';
 import mask from './mask'
-import balance from './balance'
+import HOME from './home'
 import {renderIcon, RootNavigator, TabNavigatorScreen} from '../../views/config';
 
 /**
@@ -148,7 +148,7 @@ const AppReducer = combineReducers({
 
   // auth,
   mask,
-  balance
+  HOME
 
 });
 
