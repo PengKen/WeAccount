@@ -114,10 +114,10 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
     self.error = '';
     self.d = (typeof target === 'string') ? Store.getState().HOME.balance : target;
-    if (!self.d) {
-      self.error = '[CountUp] target is null or undefined'
-      return false;
-    }
+    // if (!self.d) {
+    //   self.error = '[CountUp] target is null or undefined'
+    //   return false;
+    // }
     self.startVal = Number(startVal);
     self.endVal = Number(endVal);
     // error checks
@@ -148,7 +148,10 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
     }
     else {
       // this.d.innerHTML = result;
-      Store.dispatch(HomeActions.getAccountBalance())
+      Store.dispatch({
+        type:'CHANGE_BALANCE',
+        balance:result
+      })
      }
   };
 

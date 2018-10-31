@@ -8,7 +8,7 @@ class HomeAPI{
     @return { balance }
    */
   static getAccountBalance = () => {
-    return  HttpUtil.get("balances/"+id)
+    return  HttpUtil.get("balances/"+1)
   }
 
   /**

@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import React, {Component} from 'react';
 import {Sell,Buy,Contact } from '../icons/addMenu'
-import {scaleSize} from "../utils/px2pt";
+import {scaleSize,scaleHeightSize} from "../utils/px2pt";
 import {connect} from "react-redux";
 import maskAction from '../store/actions/maskAction'
 
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   menu:{
     width:scaleSize(375),
     //这里的高度适配有问题
-    height:scaleSize(667),
+    height:scaleHeightSize(667),
     backgroundColor:'rgba(0,0,0,0.5)',
     // zIndex:998,
     // bottom:scaleSize(68),

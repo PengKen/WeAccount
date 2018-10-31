@@ -19,8 +19,9 @@
   };
 }
  */
-import HomeAPI from '../../APIs/HOME'
+import HomeAPI from '../../APIs/HomeAPI'
 import TimeUtil from '../../utils/timeUtil'
+import CountUp from '../../components/CountUp'
 
 class HomeActions {
   /**
@@ -28,17 +29,19 @@ class HomeActions {
    * @return {function(*, *)}
    */
   static getAccountBalance = () => {
+
     return async (dispatch,getState) => {
       /*
           在这个函数内部可以发起http请求和触发其它的dispatch，但最终不一定要返回一个类似{ type,payload }
           的对象，因为thunk中间件最主要的是在这里事先封装我们最终需要dispatch的action，所需要的一些逻辑，
           换句话说，其实就是将几个dispatch融合在一起，最终融合成我们需要的dispatch，并不会去到reducer中switch
        */
-      const balance = await HomeAPI.getAccountBalance()
-      dispatch({
-        type:'CHANGE_BALANCE',
-        balance
-      })
+
+
+      const data = await HomeAPI.getAccountBalance()
+      const count = new CountUp('balance','200',data.balance,2,2)
+      count.start()
+
     }
   }
 
