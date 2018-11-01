@@ -40,7 +40,7 @@ class HomeScreen extends Component<Props> {
   constructor(){
     super()
     this.state = {
-      data:null
+      refreshing:true
     }
   }
   componentDidMount(){
@@ -51,15 +51,17 @@ class HomeScreen extends Component<Props> {
 
   }
 
-  goToRemindDetail = (params) => {
-    console.log("params")
-    console.log(params)
+  _goToRemindDetail = (params) => {
     const navigateAction = NavigationActions.navigate({
       routeName: 'RemindDetail',
-
       params,
     });
     this.props.navigation.dispatch(navigateAction)
+  }
+
+  _onRefresh = () => {
+    this.setState({refreshing: false});
+    console.log("refrensh")
   }
 
   test = () => {
@@ -126,7 +128,8 @@ class HomeScreen extends Component<Props> {
 
                 }
                 ListEmptyComponent={NoData({message:"no message"})}
-                refreshing={true}
+                onRefresh={this._onRefresh}
+                refreshing={this.state.refreshing}
                 renderItem={({item}) => (
                   <TouchableHighlight style={{
                     paddingTop:scaleHeightSize(12),
@@ -135,7 +138,7 @@ class HomeScreen extends Component<Props> {
                     paddingRight:scaleSize(27)}}
                                       activeOpacity ={0.2}
                                       underlayColor ={'#BABABA'}
-                                      onPress = {this.goToRemindDetail.bind(null,{key:item.remindId})}
+                                      onPress = {this._goToRemindDetail.bind(null,{key:item.remindId})}
                   >
                     <View>
                       <Text style={{fontSize:scaleSize(11)}}>{item.summary}</Text>
