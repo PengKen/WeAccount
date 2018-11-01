@@ -15,7 +15,7 @@ import {scaleSize,setSpText} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 const { StatusBarManager } = NativeModules;
 import CountUp from '../../components/CountUp'
-import Time from '../../utils/time'
+import Time from '../../utils/timeUtil'
 //头部的icon
 import {Triangle,Search,Setting} from "../../icons/Home";
 import {SmallMore} from "../../icons/common";

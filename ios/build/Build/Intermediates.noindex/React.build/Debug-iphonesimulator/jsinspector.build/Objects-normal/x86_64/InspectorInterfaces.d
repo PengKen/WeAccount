@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.cpp \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.h
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.cpp \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.h
