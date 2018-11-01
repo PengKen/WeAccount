@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, ActivityIndicator,SafeAreaView,Text, View,ScrollView,StatusBar,NativeModules} from 'react-native';
 import { renderIcon } from '../config'
 import Mask from '../../components/Mask'
-// import {getAccount} from "../../store/actions/fetchActions";
+// import {getAccount} flisten EADDRINUSE :::8081rom "../../store/actions/fetchActions";
 import {scaleSize,setSpText} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 const { StatusBarManager } = NativeModules;
