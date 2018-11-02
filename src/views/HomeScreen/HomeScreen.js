@@ -108,7 +108,7 @@ class HomeScreen extends Component<Props> {
           </View>
         </View>
         <ScrollView style={styles.content}>
-          <ScrollView style={[styles.remind]}>
+          <View style={[styles.remind]}>
             <View style={styles.contentHeader}>
               <View style={styles.contentHeaderTips}>
                 <Text>{"近期提醒"}</Text>
@@ -155,7 +155,7 @@ class HomeScreen extends Component<Props> {
                 }
               />
             </View>
-          </ScrollView>
+          </View>
           <ScrollView style={styles.recentlyAccounts}>
             <View style={styles.contentHeader}>
               <Text>{"最近三日账单"}</Text>
@@ -279,13 +279,13 @@ const styles = StyleSheet.create({
   remind:{
     backgroundColor:"#F5F5F5",
     borderRadius:scaleSize(3),
-    shadowColor:"#000000",
-    shadowOpacity:0.5,
-    shadowOffset:{
-      width:1,
-      height:2
+      shadowOpacity: 0.3,
+      shadowOffset: {
+          width: 1,
+          height: 1
 
-    }
+      },
+      shadowColor: "#000",
   },
   recentlyAccounts:{
     backgroundColor:"#F5F5F5",
