@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/RCTReloadCommand.m \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/RCTReloadCommand.h \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/RCTKeyCommands.h
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTReloadCommand.m \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTReloadCommand.h \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTKeyCommands.h

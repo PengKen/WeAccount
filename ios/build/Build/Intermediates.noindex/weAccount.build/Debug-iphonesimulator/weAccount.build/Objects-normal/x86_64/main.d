@@ -1,3 +1,2 @@
-dependencies: \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/weAccount/main.m \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/weAccount/AppDelegate.h
+dependencies: /Users/caimengxiang/Desktop/account/ios/weAccount/main.m \
+  /Users/caimengxiang/Desktop/account/ios/weAccount/AppDelegate.h

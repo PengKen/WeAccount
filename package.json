@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "ios": "react-native run-ios"
+    "ios": "react-native run-ios",
+    "postinstall": "rndebugger-open"
   },
   "dependencies": {
     "@babel/core": "^7.1.0",
@@ -30,6 +31,7 @@
     "babel-preset-react-native": "^5",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "^0.46.0",
+    "react-native-debugger-open": "^0.3.17",
     "react-test-renderer": "16.5.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

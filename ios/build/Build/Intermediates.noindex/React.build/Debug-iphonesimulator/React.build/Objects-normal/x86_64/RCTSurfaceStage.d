@@ -1,4 +1,4 @@
 dependencies: \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/Surface/RCTSurfaceStage.m \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/Surface/RCTSurfaceStage.h \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/React/Base/RCTDefines.h
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/Surface/RCTSurfaceStage.m \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/Surface/RCTSurfaceStage.h \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTDefines.h

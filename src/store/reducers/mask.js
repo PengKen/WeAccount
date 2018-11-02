@@ -4,6 +4,7 @@
  */
 
 function mask(state={isShowMask:false},action) {
+
   switch (action.type){
     case 'show':
       return {

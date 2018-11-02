@@ -1,15 +1,15 @@
 dependencies: \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/Libraries/Network/RCTHTTPRequestHandler.mm \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/Libraries/Network/RCTHTTPRequestHandler.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h \
-  /Users/mac/Desktop/毕设/code/weAccount/node_modules/react-native/Libraries/Network/RCTNetworking.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventEmitter.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
-  /Users/mac/Desktop/毕设/code/weAccount/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTNetworkTask.h
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Network/RCTHTTPRequestHandler.mm \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Network/RCTHTTPRequestHandler.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h \
+  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Network/RCTNetworking.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventEmitter.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTNetworkTask.h

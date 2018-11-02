@@ -30,12 +30,13 @@ import maskAction from '../../store/actions/maskAction'
 type Props = {};
 
 const tapTab  = (obj,props) => {
+  console.warn("tab")
   const isShowMask = Store.getState().mask.isShowMask //当前mask的状态
-  Store.dispatch(maskAction(isShowMask))
+  // Store.dispatch(maskAction(isShowMask))
 }
 class AddScreen extends Component<Props> {
   static navigationOptions = ({navigation}) => {
-
+    console.warn("add")
     return {
       showLable:false,
       tabBarIcon: (tab) =>  renderIcon(tab,'ADD'),
