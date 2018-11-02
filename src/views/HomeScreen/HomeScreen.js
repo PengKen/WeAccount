@@ -125,7 +125,7 @@ class HomeScreen extends Component<Props> {
                 keyExtractor={
                   /*使用item.remindId作为key*/
                   (item) => item.remindId.toString()
-
+                  
                 }
                 ListEmptyComponent={NoData({message:"no message"})}
                 onRefresh={this._onRefresh}
