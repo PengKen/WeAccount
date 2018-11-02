@@ -25,7 +25,14 @@ export default class FoundScreen extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Found</Text>
+        <Text style={{
+         numberOfLines:2, ellipsizeMode:'tail'
+
+        }}
+
+
+        >{"asdas;jfasfjsakljgaksljdklsajfklasfjasggjkhkjgjhgjghjgjg"}</Text>
+
 
       </View>
     );

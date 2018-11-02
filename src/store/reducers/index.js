@@ -3,6 +3,7 @@ import { NavigationActions,DrawerActions } from 'react-navigation';
 import mask from './mask'
 import HOME from './home'
 import {renderIcon, RootNavigator, TabNavigatorScreen} from '../../views/config';
+import RemindDeatil from "../../views/HomeScreen/RemindDetail";
 
 /**
  *  Navigation-state 指的是 object{ index ,routes:[]  }
@@ -83,13 +84,22 @@ function nav(state = initialNavState, action) {
         NavigationActions.navigate({ routeName: 'Report' }),
         state
       );
-      console.log(nextState)
       break;
+
+      /*
+         最近提醒
+       */
+      case 'RemindDetail':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'RemindDeatil' }),
+        state
+      );
+      break;
+
     default:
       nextState = RootNavigator.router.getStateForAction(action, state);
       break;
   }
-  console.log(nextState)
    return nextState || state;
 }
 
@@ -98,55 +108,11 @@ function nav(state = initialNavState, action) {
 
 const initialAuthState = { isLoggedIn: false };
 
-function auth(state = initialAuthState, action) {
-  switch (action.type) {
-    case 'Login':
-      return { ...state, isLoggedIn: true };
-    case 'Logout':
-      return { ...state, isLoggedIn: false };
-    default:
-      return state;
-  }
-}
-
-function fuck(state = initialNavState, action) {
-  let nextState ;
-  switch (action.type) {
-    /*
-      账单
-     */
-    case 'fuck':
-      nextState = RootNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Account' }),
-        state
-      );
-      break;
-    /*
-      报表
-     */
-
-    case 'fuck2':
-
-      nextState = RootNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Report' }),
-        state
-      );
-      console.log(nextState)
-      break;
-    default:
-      nextState = RootNavigator.router.getStateForAction(action, state);
-      break;
-  }
-
-  return nextState || state;
-}
 
 
 const AppReducer = combineReducers({
-  fuck,
-  nav,
 
-  // auth,
+  nav,
   mask,
   HOME
 

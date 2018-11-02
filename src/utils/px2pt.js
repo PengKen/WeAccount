@@ -22,8 +22,8 @@
   var fontScale = ReactNative.PixelRatio.getFontScale();
   export var pixelRatio = ReactNative.PixelRatio.get();
 
-  const w2 = 375  / BASE_PIXEL_RATIO;
-  const h2 = 667 / BASE_PIXEL_RATIO;
+  const w2 = 375  ;
+  const h2 = 667 ;
   /**
    * 设置text为sp
    * @param size  sp
@@ -41,18 +41,27 @@
     return size / defaultStatus;
   }
   /**
-   * 屏幕适配,缩放size
+   * 屏幕宽度适配,缩放size
    * @param size
    * @returns {Number}
    * @constructor
    */
   export function scaleSize(size:Number) {
     var scaleWidth = screenW / w2 ;
-    var scaleHeight = screenH / h2 ;
-    var scale = Math.min(scaleWidth, scaleHeight);
+    var scale = scaleWidth;
     size = Math.round((size * scale  + 0.5));
-    return size / BASE_PIXEL_RATIO
+    return size
   }
 
-
+  /**
+   * 屏幕高度适配,缩放size
+   * @param size
+   * @return {number}
+   */
+  export function scaleHeightSize(size:Number){
+    var scaleHeight = screenH / h2 ;
+    var scale = scaleHeight;
+    size = Math.round((size * scale  + 0.5));
+      return size
+  }
 
