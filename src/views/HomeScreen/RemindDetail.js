@@ -24,6 +24,7 @@ class RemindDeatil extends  Component{
     return (
       <View>
         <Text>{this.props.navigation.getParam('key')}</Text>
+        
       </View>
     )
   }
