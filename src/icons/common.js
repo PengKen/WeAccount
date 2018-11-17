@@ -118,6 +118,24 @@ const Back = props => {
 }
 
 
+const PhotoAdd = props => (
+
+    <Svg width={scaleSize(80)} height={scaleHeightSize(80)} viewBox="0 0 80 80">
+
+        <G id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <G id="导入商品" transform="translate(-106.000000, -553.000000)" stroke="#D8D8D8">
+                <G id="Group-4" transform="translate(-1.000000, 421.000000)">
+                    <G id="添加按钮" transform="translate(107.000000, 132.000000)">
+                        <Rect id="Rectangle-35" stroke-width="1.5" x="0.75" y="0.75" width="78.5" height="78.5"></Rect>
+                        <Path d="M18.9022965,40.9230769 L60.774312,40.9230769" id="Line" stroke-width="2.5" stroke-linecap="square"></Path>
+                        <Path d="M39.6923077,17.0525473 L39.6923077,63.5160056" id="Line" stroke-width="2.5" stroke-linecap="square"></Path>
+                    </G>
+                </G>
+            </G>
+        </G>
+    </Svg>
+)
+
 export {
   Triangle,
   Search,
@@ -125,5 +143,6 @@ export {
   More,
   SmallMore,
   Back,
+  PhotoAdd
 
 }

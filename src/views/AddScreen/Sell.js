@@ -9,12 +9,13 @@ import {StyleSheet,
   ScrollView,
   FlatList,
   findNodeHandle,
-  Image
+  Image,
+  TouchableHighlight
 } from "react-native";
 import {connect} from "react-redux";
 import Picker from '../../components/Picker'
 import React,{Component} from 'react'
-import {Triangle,Back} from '../../icons/common'
+import {Triangle,Back,PhotoAdd} from '../../icons/common'
 import {THEME_COLOR} from "../../utils/constant";
 import Route from '../../utils/route'
 import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
@@ -55,7 +56,8 @@ class SellScreen extends Component<Props> {
           clearButtonMode:'while-editing',
           maxLength:10,
           showArrow:true,
-          type:'Text'
+          type:'Text',
+          activeOpacity:1
         },
         {
           key:'amount',
@@ -72,7 +74,8 @@ class SellScreen extends Component<Props> {
           value:null,
           placeholder:'请选择或输入客户',
           showArrow:true,
-          type:'Text'
+          type:'Text',
+          activeOpacity:1
         },
         {
           key:'price',
@@ -81,6 +84,23 @@ class SellScreen extends Component<Props> {
           keyboardType:'numeric',
           type:'TextInput'
         },
+        {
+          key:'havePay',
+          item:'已付',
+          placeholder:'0,000.00元',
+          type:'TextInput',
+          keyboardType:'numeric'
+
+        },
+        {
+          key:'needPay',
+          item:'尚未付',
+          placeholder:'0,000.00元',
+          type:'Text',
+          activeOpacity:1
+        }
+
+
 
 
       ],
@@ -93,19 +113,22 @@ class SellScreen extends Component<Props> {
    * @private
    */
   _showPciker = (key,targetIndex) => {
-    this.setState({targetIndex})
-    this.refs.Picker.showPicker()
+
       switch(key){
         case 'client':
           this.setState({
+            targetIndex,
             pickerData:this.props.clientList
           })
+          this.refs.Picker.showPicker()
           break;
 
         case 'cargo':
           this.setState({
+            targetIndex,
             pickerData:this.props.cargoNameList
           })
+          this.refs.Picker.showPicker()
           break;
     }
   }
@@ -162,6 +185,7 @@ class SellScreen extends Component<Props> {
               </View>
             <View  style={styles.content} >
               <TouchableOpacity
+                activeOpacity={1}
                 style={styles.TextWrapper}
                 onPress={this._showPciker.bind(this,item.key,index)}>
                 {
@@ -207,6 +231,35 @@ class SellScreen extends Component<Props> {
 
         />
 
+        <ScrollView style={styles.remark}>
+          <TextInput
+            multiline={true}
+            placeholder={"请补充此订单的其他相关信息或备注等等....(不超过200个词)"}
+
+          />
+        </ScrollView>
+
+        <View style={styles.photos}>
+          <FlatList
+              horizontal={true}
+              keyExtractor={(item,index) => index.toString()}
+              data={[1,2,3]}
+            renderItem= {({item,index}) => (
+              <TouchableHighlight
+                  onPress = {(item) => console.log(index)}
+                  style={styles.photo}>
+                <View>
+                    <View style={{position:'absolute',top:scaleSize(15),height:scaleHeightSize(50),width:2,backgroundColor:"#D8D8D8",left:scaleSize(40)}}></View>
+                    <View style={{position:'absolute',top:scaleHeightSize(40),height:2,width:scaleSize(50),backgroundColor:"#D8D8D8",left:scaleSize(15)}}></View>
+
+
+
+                </View>
+            </TouchableHighlight>)}
+          />
+        </View>
+
+
 
       </ScrollView>
 
@@ -234,7 +287,7 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     padding:scaleSize(10),
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#F5F5F5'
   },
   wrapper:{
     flex:0,
@@ -266,6 +319,25 @@ const styles = StyleSheet.create({
   },
   TextWrapper:{
     flex:1,
+  },
+  remark:{
+    marginTop: scaleHeightSize(10),
+    paddingLeft: scaleSize(20),
+    height:scaleHeightSize(130)
+  },
+  photos:{
+    marginTop:scaleHeightSize(5),
+    paddingLeft: scaleSize(20),
+    flex:1,
+    flexDirection:'row',
+
+  },
+  photo:{
+    marginRight: scaleSize(10),
+      height:scaleHeightSize(80),
+      width:scaleSize(80),
+      borderWidth:1,
+      borderColor:"#D8D8D8"
   }
 
 })
