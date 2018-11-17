@@ -1,11 +1,16 @@
 import { createStackNavigator} from 'react-navigation';
 import HomeScreen from './HomeScreen'
 import RemindDetail from './RemindDetail'
-import AccountNav from "../AccountScreen";
-import {renderIcon} from "../config";
+import AccountDetail from './AccountDetail'
+import renderIcon from "../../icons/renderIcon";
+import AccountList from './AccountList'
+import RemindList from './RemindList'
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   RemindDetail: RemindDetail,
+  AccountDetail: AccountDetail,
+  AccountList: AccountList,
+  RemindList: RemindList
 });
 HomeStack.navigationOptions = ({ navigation }) => {
   /*

@@ -7,13 +7,13 @@
  */
 
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text, View,StatusBar} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, StatusBar} from 'react-native';
 import {Search,More} from "../../icons/Account";
 import {scaleSize} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 import TopSafeView from '../../components/SafeView'
 import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
-import Route from '../../utils/currentRoute'
+import Route from '../../utils/route'
 type Props = {};
  class AccountHeader extends Component<Props> {
   goToAccount = () => {

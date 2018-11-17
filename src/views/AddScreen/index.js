@@ -7,83 +7,53 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image} from 'react-native';
-import { HOME,ACCOUNT,FOUND,PERSONAL,ADD }from '../../icons/buttonNavigation'
-import { renderIcon } from '../config'
-import {Store} from "../../../App"
-import Mask  from '../../components/Mask'
+import MeunScreen from './Menu'
+import BuyScreen  from  './Buy'
+import SellScreen from './Sell'
+import ClientsScreen from './Clients'
+import  renderIcon  from '../../icons/renderIcon'
+import {Store} from '../../../App'
+import {createStackNavigator, NavigationActions} from 'react-navigation';
 import {connect} from "react-redux";
 import maskAction from '../../store/actions/maskAction'
+
 /**
  * Store是一个对象
  *
  * {
         //执行createStore其实返回的就是这些东东
-        dispatch,       //触发action去执行reducer，更新state
-        subscribe,     //订阅state改变，state改变时会执行subscribe的参数（自己定义的一个函数）
-        getState,      //获取state树
-        replaceReducer,       //替换reducer
-        [$$observable]: observable
-        //redux内部用的，对我们来说没用
-    }
+
+    }dispatch,       //触发action去执行reducer，更新state
+ subscribe,     //订阅state改变，state改变时会执行subscribe的参数（自己定义的一个函数）
+ getState,      //获取state树
+ replaceReducer,       //替换reducer
+ [$$observable]: observable
+ //redux内部用的，对我们来说没用
  */
-type Props = {};
+
+
 
 const tapTab  = (obj,props) => {
-  const isShowMask = Store.getState().mask.isShowMask //当前mask的状态
-   Store.dispatch(maskAction(isShowMask))//现实浮层
-}
-class AddScreen extends Component<Props> {
-  static navigationOptions = ({navigation}) => {
-    return {
-      showLable:false,
-      tabBarIcon: (tab) =>  renderIcon(tab,'ADD'),
-      tabBarOnPress:(obj)=> tapTab(obj,navigation.getParam('isShowMask'))
-    }
+  const isShowMask = Store.getState().MASK.isShowMask //当前mask的状态
+  Store.dispatch(maskAction(isShowMask))//现实浮层
 
-  };
-
-  render() {
-    return (
-      <View>
-      </View>
-
-
-    );
-  }
 }
 
-const mapStateToProps = ({state}) => {
-  return {
-    isShowMask:state.mask.isShowMask
-  }
-}
-
-const mapDispatchToProps = ({dispatch}) => {
-  return {
-    toggleMask: (type) => dispatch({type})
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    position:'relative',
-    backgroundColor:'#EDEDED',
-    zIndex:1
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+const AddStack = createStackNavigator({
+  Menu:MeunScreen,
+  Sell:SellScreen ,
+  Buy:BuyScreen,
+  Clients: ClientsScreen,
 });
+AddStack.navigationOptions = ({ navigation }) => {
+  /*
+  设置了嵌套的导航页的Icon要拿出到navigation中单独配置
+ */
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddScreen);
+  return {
+    tabBarIcon: (tab) =>  renderIcon(tab,'ADD'),
+    tabBarVisible: navigation.state.index > 0 ? false : true,//跳转到详情页要隐藏tabbar
+    tabBarOnPress:(obj)=> tapTab(obj,navigation.getParam('isShowMask'))
+  };
+};
+export default AddStack

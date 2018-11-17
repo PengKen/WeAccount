@@ -7,22 +7,22 @@
  */
 
 import React, {Component} from 'react';
-import {TouchableOpacity, StyleSheet,TouchableHighlight,Text,FlatList, View,ScrollView,StatusBar,NativeModules} from 'react-native';
-import { renderIcon } from '../config'
+import {TouchableOpacity, StyleSheet,TouchableHighlight,Image,Text,FlatList, View,ScrollView,StatusBar,NativeModules} from 'react-native';
+import  renderIcon  from '../../icons/renderIcon'
 import Mask from '../../components/Mask'
-import ItemSeparatorComponent from './ItemSeparatorComponent'
+import ItemSeparatorComponent from '../../components/ItemSeparatorComponent'
 import {scaleSize,scaleHeightSize} from "../../utils/px2pt";
 import { connect } from 'react-redux';
 import NoData from '../../components/NoData'
 const { StatusBarManager } = NativeModules;
 import {NavigationActions} from 'react-navigation'
-import Time from '../../utils/timeUtil'
+import AccountItem from '../../components/AccountItem'
 //头部的icon
 import {Triangle,Search,Setting} from "../../icons/Home";
 import {SmallMore} from "../../icons/common";
 import TopSafeView from '../../components/SafeView'
 import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
-import {HomeActions} from "../../store/actions/fetchActions";
+import {GlobalActions, HomeActions} from "../../store/actions/fetchActions";
 StatusBarManager.getHeight((statusBarHeight)=>{
   console.log(statusBarHeight)
 })
@@ -46,18 +46,30 @@ class HomeScreen extends Component<Props> {
   componentDidMount(){
 
     this.props.getAccountBalance()
+    this.props.getRecentlyAccounts()
   }
   componentWillMount(){
 
   }
 
-  _goToRemindDetail = (params) => {
+  componentWillReceiveProps(nextProps){
+    console.warn("receiver")
+  }
+
+  /**
+   * @desc 跳转到提醒事项的详情页
+   * @param params { key： remindId }
+   * @private
+   */
+  _goToRemindDetail = (params:Object) => {
     const navigateAction = NavigationActions.navigate({
       routeName: 'RemindDetail',
-      params,
+      params
     });
     this.props.navigation.dispatch(navigateAction)
   }
+
+
 
   _onRefresh = () => {
     this.setState({refreshing: false});
@@ -82,7 +94,7 @@ class HomeScreen extends Component<Props> {
         <View style={styles.header}>
           <View style={styles.headerButtons}>
             <View style={styles.date}>
-              <Text style={[styles.tips,{paddingRight:scaleSize(5)}]}>{ "5 / 2018" }</Text>
+              <Text style={[styles.dateTips,{paddingRight:scaleSize(5)}]}>{ "5 / 2018" }</Text>
               <Triangle />
             </View>
             <View style={styles.more}>
@@ -95,24 +107,24 @@ class HomeScreen extends Component<Props> {
           </View>
 
           <View style={styles.wrapper}>
-            <Text style={styles.tips}>{"当前总资产（元）"}</Text>
+            <Text style={styles.dateTips}>{"当前总资产（元）"}</Text>
             <Text style={styles.balance}>{"¥" + this.props.balance}</Text>
             <View style={styles.bottomTips}>
               <View style={{paddingTop:scaleSize(10)}}>
-                <Text style={styles.tips}>{"本月支出（元）¥ 888.00"}</Text>
+                <Text style={styles.dateTips}>{"本月支出（元）¥ 888.00"}</Text>
               </View >
               <View style ={{paddingTop:scaleSize(10)}}>
-                <Text style={styles.tips}>{"本月收入（元）¥ 28222222222222222.00"}</Text>
+                <Text style={styles.dateTips}>{"本月收入（元）¥ 28222222222222222.00"}</Text>
               </View>
             </View>
           </View>
         </View>
-        <ScrollView style={styles.content}>
+        <View style={styles.content}>
           <View style={[styles.remind]}>
             <View style={styles.contentHeader}>
               <View style={styles.contentHeaderTips}>
                 <Text>{"近期提醒"}</Text>
-                <Text style={{marginLeft:scaleSize(5),color:'#4A4A4A',fontSize:scaleSize(11),fontWeight:'300'}}>{this.props.recentlyReminds.length + '条'}</Text>
+                <Text style={[styles.tips,{marginLeft:scaleSize(5)}]}>{this.props.recentlyReminds.length + '条'}</Text>
               </View>
 
               <SmallMore style={styles.contentHeaderMore}></SmallMore>
@@ -158,12 +170,31 @@ class HomeScreen extends Component<Props> {
           </View>
           <ScrollView style={styles.recentlyAccounts}>
             <View style={styles.contentHeader}>
-              <Text>{"最近三日账单"}</Text>
+              <View style={styles.contentHeaderTips}>
+                <Text>{"最近三日账单"}</Text>
+                <Text style={[styles.tips,{marginLeft:scaleSize(5),}]}>{this.props.recentlyAccounts.length + '笔'}</Text>
+
+              </View>
               <SmallMore style={styles.contentHeaderMore}></SmallMore>
-              <Text>{Time.getCurrentFullTime()}</Text>
+            </View>
+            <View style={styles.accountList}>
+              <FlatList
+
+                data={this.props.recentlyAccounts}
+                keyExtractor={
+                  /*使用item.remindId作为key*/
+                  (item) => item.accountId.toString()
+
+                }
+                ListEmptyComponent={NoData({message:"no message"})}
+                onRefresh={this._onRefresh}
+                refreshing={this.state.refreshing}
+                renderItem={({item}) => (<AccountItem item={item}/>)
+                }
+              />
             </View>
           </ScrollView>
-        </ScrollView>
+        </View>
         <Mask />
         {/* Mask浮层只需要在一个view中注册就可以了 */}
 
@@ -175,14 +206,16 @@ class HomeScreen extends Component<Props> {
 const mapStateToProps = (state) => {
   return {
     balance:state.HOME.balance,
-    recentlyReminds:state.HOME.recentlyReminds
+    recentlyReminds:state.HOME.recentlyReminds,
+    recentlyAccounts:state.HOME.recentlyAccounts
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleMask: (type) => dispatch({type}),
-    getAccountBalance: () => dispatch(HomeActions.getAccountBalance())
+    getAccountBalance: () => dispatch(HomeActions.getAccountBalance()),
+    getRecentlyAccounts: () => dispatch(HomeActions.getRecentlyAccount())
   }
 }
 const styles = StyleSheet.create({
@@ -224,7 +257,7 @@ const styles = StyleSheet.create({
     paddingBottom:scaleHeightSize(15)
 
   },
-  tips:{
+  dateTips:{
     fontSize:scaleSize(11),
     color:'white',
     fontWeight:"700",
@@ -270,7 +303,8 @@ const styles = StyleSheet.create({
   },
   contentHeaderTips:{
     flexDirection:'row',
-    flex:1
+    flex:1,
+    alignItems:'center'
   },
   contentHeaderMore:{
     flexDirection:'row',
@@ -304,9 +338,10 @@ const styles = StyleSheet.create({
     // flexWrap:'wrap',
     paddingTop:scaleHeightSize(8),
 
+  },
 
 
-  }
+
 
 });
 

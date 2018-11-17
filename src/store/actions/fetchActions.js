@@ -20,6 +20,7 @@
 }
  */
 import HomeAPI from '../../APIs/HomeAPI'
+import GlobalAPI from '../../APIs/GlobalAPI'
 import TimeUtil from '../../utils/timeUtil'
 import CountUp from '../../components/CountUp'
 
@@ -122,8 +123,34 @@ class HomeActions {
 
 }
 
+class GlobalActions {
+  /**
+   * @desc 获取货物名称列表
+   * @param year
+   * @return {function(*, *)}
+   */
+  static  getCargoList = () => {
+    return async (dispatch , getState) => {
+      const cargoNameList = await GlobalAPI.getCargoList()
+      dispatch({
+        type:'GET_CARGO_NAME_LIST',
+        cargoNameList
+      })
+    }
+  }
 
+  static getClientList = () => {
+    return async (dispatch,getState) => {
+      const clientList = await GlobalAPI.getClientList()
+      dispatch({
+        type:'GET_CLIENT_LIST',
+        clientList
+      })
+    }
+  }
+}
 
 export {
-  HomeActions
+  HomeActions,
+  GlobalActions
 }

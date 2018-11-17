@@ -8,8 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image} from 'react-native';
-import { renderIcon } from '../config'
+import renderIcon from '../../icons/renderIcon'
 import { NavigationActions } from 'react-navigation';
+import Mask from '../../components/Mask'
 type Props = {};
 
 export default class FoundScreen extends Component<Props> {
@@ -22,18 +23,17 @@ export default class FoundScreen extends Component<Props> {
   componentWillMount(){
 
   }
+  componentDidMount(){
+    console.log("found")
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{
-         numberOfLines:2, ellipsizeMode:'tail'
-
-        }}
-
-
-        >{"asdas;jfasfjsakljgaksljdklsajfklasfjasggjkhkjgjhgjghjgjg"}</Text>
-
-
+        <Text>
+          <Text>1</Text>
+          <Text>2</Text>
+        </Text>
+        <Mask />
       </View>
     );
   }

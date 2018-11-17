@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View,StatusBar} from 'react-native';
-import { renderIcon } from '../config'
+import renderIcon from '../../icons/renderIcon'
 import Account from './account'
 import Report from './report'
 import AccountHeader from './header'

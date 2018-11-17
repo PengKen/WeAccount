@@ -2,20 +2,20 @@
  * @desc 最近提醒的详情页
  */
 import React, {Component} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native'
+import {View, Text, TextInput, StyleSheet,TouchableOpacity} from 'react-native'
 import {TopSafeView} from "../../components/SafeView";
 import {IS_IPHONEX, THEME_COLOR} from "../../utils/constant";
 import {renderIcon} from "../config";
 import {connect} from 'react-redux'
 import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
-
+import Toast from 'react-native-root-toast';
 class RemindDeatil extends Component {
     constructor(props) {
         super(props);
         this.state = {text: 'Useless Placeholder'};
     }
 
-    static navigationOptions = {
+    static navigationOptions = ( {navigation} ) => ({
 
         title: "详情", //会同时设置导航条和标签栏的title
         headerStyle: {
@@ -25,9 +25,67 @@ class RemindDeatil extends Component {
         headerTitleStyle: {
             fontWeight: 'bold',
         },
+         headerRight: (
+            <TouchableOpacity
+              style={styles.save}
+              onPress={navigation.getParam('handleSave')}
+            >
+                <Text style={{
+                    color:navigation.getParam('saveState') ? '#fff' : '#bbbbbb',
+                    fontSize:scaleSize(14)}}>
+                  {"保存"}
+                </Text>
+            </TouchableOpacity>
+      ),
+    });
 
-    };
+    componentDidMount(){
+        /*
+            每一次路由导航到此都会触发这个钩子
+        */
+      this.props.navigation.setParams({saveState: false})
+      this.props.navigation.setParams({handleSave:this._handleSave})
+    }
 
+
+    _handleSave = () =>{
+      /*
+        summary的长度在15个词以内
+    */
+      if(this.state.text.length > 10){
+        let toast = Toast.show('概要长度不得超过15个字', {
+          duration: Toast.durations.LONG,
+          position: 0,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+          delay: 0,
+          onShow: () => {
+            // calls on toast\`s appear animation start
+          },
+          onShown: () => {
+            // calls on toast\`s appear animation end.
+            this.props.navigation.setParams({saveState:false})
+          },
+          onHide: () => {
+            // calls on toast\`s hide animation start.
+
+          },
+          onHidden: () => {
+
+          }
+        });
+      }
+
+
+    }
+    _handleChangeText = (text) => {
+
+
+      this.setState({text})
+
+      this.props.navigation.setParams({saveState: true})
+    }
 
     render() {
         return (
@@ -39,7 +97,7 @@ class RemindDeatil extends Component {
                     </View>
                     <TextInput
                         style={styles.content}
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={this._handleChangeText}
                         value={this.state.text}
                         clearButtonMode={'while-editing'}
 
@@ -123,6 +181,9 @@ const styles = StyleSheet.create({
     text:{
         color:'#9D9D9D',
 
+    },
+    save:{
+      paddingRight:scaleSize(5),
 
     }
 

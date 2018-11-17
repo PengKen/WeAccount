@@ -8,7 +8,6 @@
 
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View,StatusBar} from 'react-native';
-import { renderIcon } from '../config'
 import {Search,More,Filter} from "../../icons/Account";
 import {SmallMore} from "../../icons/common";
 import {scaleSize} from "../../utils/px2pt";
@@ -16,10 +15,10 @@ import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
 
 type Props = {};
 export default class AccountScreen extends Component<Props> {
-  static navigationOptions = {
-    tabBarLabel: '账单',
-    tabBarIcon: (tab) =>  renderIcon(tab,'ACCOUNT')
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: '账单',
+  //   tabBarIcon: (tab) =>  renderIcon(tab,'ACCOUNT')
+  // };
 
   render() {
 

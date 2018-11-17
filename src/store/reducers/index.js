@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import { NavigationActions,DrawerActions } from 'react-navigation';
-import mask from './mask'
+import MASK from './mask'
 import HOME from './home'
-import {renderIcon, RootNavigator, TabNavigatorScreen} from '../../views/config';
-import RemindDeatil from "../../views/HomeScreen/RemindDetail";
+import GLOBAL from './global'
+import {RootNavigator, TabNavigatorScreen} from '../../views/config';
+import RemindDetail from "../../views/HomeScreen/RemindDetail";
 
 /**
  *  Navigation-state 指的是 object{ index ,routes:[]  }
@@ -44,11 +45,34 @@ const initialNavState = RootNavigator.router.getStateForAction(
   firstNavState // state
 );
 
+function TABHISTORY(state={list:['TAB_HOME']},action){
+  switch(action.type){
+    case 'Navigation/NAVIGATE' :
+      if(!action.routeName || action.routeName === 'TAB_ADD' || action.routeName.indexOf('TAB_')<0) return state;
+      if(state.list.length === 4)  { state.list.shift();}
+      state.list.push(action.routeName);
+      return state
+    case 'Navigation/COMPLETE_TRANSITION' :
+      return state
+      break
+
+    default: return state
+  }
+
+
+
+  }
+
+
+
+
+
 function nav(state = initialNavState, action) {
   let nextState ;
 
   switch (action.type) {
-    /*
+
+    /**
         筛选抽屉
      */
     case 'Filter':
@@ -91,7 +115,7 @@ function nav(state = initialNavState, action) {
        */
       case 'RemindDetail':
       nextState = RootNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'RemindDeatil' }),
+        NavigationActions.navigate({ routeName: 'RemindDetail' }),
         state
       );
       break;
@@ -113,8 +137,10 @@ const initialAuthState = { isLoggedIn: false };
 const AppReducer = combineReducers({
 
   nav,
-  mask,
-  HOME
+  MASK,
+  HOME,
+  GLOBAL,
+  TABHISTORY
 
 });
 

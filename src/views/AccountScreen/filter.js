@@ -8,7 +8,6 @@
 
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View, Button,StatusBar} from 'react-native';
-import {renderIcon} from '../config'
 import {Search, More, Filter} from "../../icons/Account";
 import {SmallMore} from "../../icons/common";
 import {scaleSize} from "../../utils/px2pt";

@@ -8,7 +8,7 @@ import FoundScreen from './FoundScreen'
 import PersonalScreen from './PersonalScreen'
 import React from "react";
 import {createBottomTabNavigator, createStackNavigator,TabNavigator} from 'react-navigation'
-import { HOME,ACCOUNT,FOUND,PERSONAL,ADD }from '../icons/buttonNavigation'
+
   import { connect } from 'react-redux';
 import {
   reduxifyNavigator,
@@ -22,48 +22,26 @@ const middleware = createReactNavigationReduxMiddleware(
   // state => state.nav,
   state => state.nav
 );
-const switchNav = function (component:string ,currentTarget:string) {
 
-  switch(component){
-    case 'HOME':
-      return( <HOME currentTarget={currentTarget} /> );
-    case 'ACCOUNT':
-      return (<ACCOUNT currentTarget={currentTarget} />) ;
-    case 'FOUND' :
-      return (<FOUND currentTarget={currentTarget} /> );
-    case 'PERSONAL':
-      return (<PERSONAL currentTarget={currentTarget} />) ;
-    case 'ADD':
-      return <ADD currentTarget={currentTarget} /> ;
-  }
-}
-
-export function renderIcon(tab, component) {
-  if (tab.focused) {//标签激活状态下icon的路径
-    return switchNav(component,component)
-  } else {                                  //未激活状态下的icon
-    return switchNav(component,'NO_SELCETED')
-  }
-}
 import {FilterDrawer} from './AccountScreen/filter'
 
 
 const TabNavigatorScreen = createBottomTabNavigator(
   {
-    HOME: {
+    TAB_HOME: {
       screen: HomeScreen,
     },
-    ACCOUNT: {
+    TAB_ACCOUNT: {
       screen: AccountScreen
 
     },
-    ADD:{
+    TAB_ADD:{
       screen: AddScreen
     },
-    FOUND: {
+    TAB_FOUND: {
       screen: FoundScreen
     },
-    PERSONAL: {
+    TAB_PERSONAL: {
       screen: PersonalScreen
     }
   },
@@ -71,7 +49,7 @@ const TabNavigatorScreen = createBottomTabNavigator(
     tabBarPosition: 'bottom',             //设置标签栏位置
     animationEnabled: false,               //开启标签页切换动画
     swipeEnabled: true,                   //允许标签页之间滑动切换
-    initialRouteName:'HOME',              //初始路由
+    initialRouteName:'TAB_HOME',              //初始路由
     tabBarOptions: {
                       //允许标签页之间滑动切换
       //当前选中的tab bar的文本颜色和图标颜色

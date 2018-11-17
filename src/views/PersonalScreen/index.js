@@ -8,8 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image} from 'react-native';
-import { renderIcon } from '../config'
+import renderIcon  from '../../icons/renderIcon'
 import {scaleSize} from "../../utils/px2pt";
+import Mask from '../../components/Mask'
 type Props = {};
 export default class PersonalScreen extends Component<Props> {
 
@@ -33,7 +34,7 @@ export default class PersonalScreen extends Component<Props> {
       <View style={styles.container}>
         <Text style={{fontSize: 30, color: 'red'}} onPress={() => this.setState({title:this.state.title + 1})}>ADD</Text>
         <Text>{this.state.title}</Text>
-
+        <Mask />
       </View>
     );
   }

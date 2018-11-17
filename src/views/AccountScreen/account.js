@@ -8,13 +8,12 @@
 
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View,StatusBar,TouchableOpacity} from 'react-native';
-import { renderIcon } from '../config'
 import {Search,More,Filter} from "../../icons/Account";
 import {SmallMore} from "../../icons/common";
 import {scaleSize} from "../../utils/px2pt";
 import Echarts from 'native-echarts'
 import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
-
+import Mask from '../../components/Mask'
 type Props = {};
 const option = {
   xAxis: {
@@ -105,6 +104,7 @@ const AccountScreen = ({navigation}) => (
             </View>
           </View>
         </ScrollView>
+        <Mask />
       </View>
     );
 

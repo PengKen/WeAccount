@@ -37,14 +37,15 @@ class HomeAPI{
    * @returns [{
    *              accountId,
    *              date,
-   *              productName,
+   *              cargoName,
    *              amount(货物数量),
    *              transactionType(交易类型:{buy(买) , sale(卖)}),
    *              clientName(交易客户),
+   *              images:[url]
    *           }]
    */
   static getAccountsWithoutSpecific = (type = 'recently') => {
-    return HttpUtil.get('accounts/'+id + '?type='+type)
+    return HttpUtil.get('accounts/'+1 + '?type='+type)
   }
 
 

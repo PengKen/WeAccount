@@ -1,6 +1,6 @@
 import {
   AppRegistry, StyleSheet, Text, Modal, Animated, View, TouchableOpacity, TouchableHighlight,
-  DeviceInfo
+  DeviceInfo, Easing
 } from 'react-native';
 import React, {Component} from 'react';
 import {Sell,Buy,Contact } from '../icons/addMenu'
@@ -8,6 +8,7 @@ import {scaleSize,scaleHeightSize} from "../utils/px2pt";
 import {connect} from "react-redux";
 import maskAction from '../store/actions/maskAction'
 import {DEVECE_HEIGHT} from "../utils/constant";
+import {NavigationActions,withNavigation} from "react-navigation";
 
 class Mask extends Component {
   constructor(props) {
@@ -39,6 +40,23 @@ class Mask extends Component {
 
   }
 
+  _goToSellScreen = () => {
+    this._animatBack()
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'Sell',
+    });
+    this.props.navigation.dispatch(navigateAction)
+  }
+
+
+  _goToClientsScreen = () => {
+    this._animatBack()
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'Clients',
+    });
+    this.props.navigation.dispatch(navigateAction)
+  }
+
   handlerPress = (param) => {
     console.log(param)
   }
@@ -57,14 +75,14 @@ class Mask extends Component {
       Animated.timing(                  // 随时间变化而执行动画
         this.state.SellAnim.left,            // 动画中的变量值
         {
-
+          easing: Easing.linear,
           toValue: scaleSize(saleLeft),     // 透明度最终变为1，即完全不透明
           duration: 500,              // 让动画持续一段时间
         }),
       Animated.timing(
         this.state.SellAnim.bottom,
         {
-
+          easing: Easing.linear,
           toValue:scaleSize( DeviceInfo.isIPhoneX_deprecated ? 34 + saleBottom : saleBottom ),
           duration:500
         }
@@ -72,6 +90,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.SellAnim.opacity,
         {
+          easing: Easing.linear,
           delay:saleOpacity === 1 ? 0 :500,
           toValue:saleOpacity,
           duration:0
@@ -83,6 +102,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.BuyAnim.bottom,
         {
+          easing: Easing.linear,
           delay:100,
           toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? 34 + buyBottom : buyBottom),
           duration:500
@@ -91,6 +111,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.BuyAnim.opacity,
         {
+          easing: Easing.linear,
           delay:saleOpacity === 1 ? 200 :500,
           toValue:saleOpacity,
           duration:0
@@ -99,6 +120,7 @@ class Mask extends Component {
       Animated.timing(                  // 随时间变化而执行动画
         this.state.ContactAnim.right,            // 动画中的变量值
         {
+          easing: Easing.linear,
           delay:200,
           toValue: scaleSize(contactRight),     // 透明度最终变为1，即完全不透明
           duration: 500,              // 让动画持续一段时间
@@ -106,6 +128,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.ContactAnim.bottom,
         {
+          easing: Easing.linear,
           delay:200,
           toValue:scaleSize(DeviceInfo.isIPhoneX_deprecated ? 34 + contactBottom : contactBottom),
           duration:500
@@ -114,6 +137,7 @@ class Mask extends Component {
       Animated.timing(
         this.state.ContactAnim.opacity,
         {
+          easing: Easing.linear,
           delay:saleOpacity === 1 ? 400 :650,
           toValue:saleOpacity,
           duration:0
@@ -124,7 +148,7 @@ class Mask extends Component {
     ]).start();                        // 开始执行动画
   }
 
-  animatBack = () => {
+  _animatBack = () => {
     this.animateMove({saleLeft:153,saleBottom:-14,saleOpacity:0,buyBottom:-14,contactBottom:-14,contactRight:153})
 
     setTimeout(
@@ -166,7 +190,7 @@ class Mask extends Component {
 
           <TouchableOpacity
             activeOpacity={1}
-            onPress = { this.animatBack }
+            onPress = { this._animatBack }
             >
             <View style={styles.menu}>
               <Animated.View style={{
@@ -176,7 +200,7 @@ class Mask extends Component {
                 opacity:this.state.SellAnim.opacity
 
               }}>
-                <TouchableOpacity  >
+                <TouchableOpacity onPress={this._goToSellScreen} >
                   <Sell />
                 </TouchableOpacity>
               </Animated.View>
@@ -201,7 +225,7 @@ class Mask extends Component {
                 bottom:this.state.ContactAnim.bottom,
                 opacity:this.state.ContactAnim.opacity}}>
                 <TouchableOpacity >
-                  <Contact />
+                  <Contact  />
                 </TouchableOpacity>
               </Animated.View>
 
@@ -249,7 +273,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    isShowMask:state.mask.isShowMask
+    isShowMask:state.MASK.isShowMask
   }
 }
 
@@ -260,4 +284,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     toggleMask: (action) => dispatch(action)
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Mask);
+export default withNavigation(connect(mapStateToProps,mapDispatchToProps)(Mask));

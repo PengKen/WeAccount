@@ -1,5 +1,5 @@
 var moment = require('moment');
-
+import 'moment/locale/zh-cn'
 moment.locale('zh-cn') //设置语言
 
 class Time {
@@ -11,6 +11,15 @@ class Time {
     return moment().format("YYYY年M月DD日 HH:mm")
   }
 
+  /**
+   * @desc 获取日期但不包括年份
+   * @params 2018年9月26日
+   * @return {string} 9月26日
+   */
+  static getTimeWithoutYear = (date:String) => {
+
+    return date.slice(date.indexOf('年')+1)
+  }
 
 
   /**

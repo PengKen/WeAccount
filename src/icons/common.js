@@ -1,4 +1,4 @@
-import {scaleSize} from "../utils/px2pt";
+import {scaleHeightSize, scaleSize} from "../utils/px2pt";
 import Svg, {Path, Rect, Circle, G, Text, TSpan, Polygon, Defs, Use, Image} from 'react-native-svg';
 import {Platform, StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
@@ -99,11 +99,31 @@ const More = props => {
 
   )
 }
+
+const Back = props => {
+  return (
+    <View style={{paddingLeft:scaleSize(10)}}>
+
+
+
+      <Svg width="13" height="20" viewBox="0 0 13 20">
+        <G id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <G id="back" fill="#FFF" fill-rule="nonzero">
+            <Path d="M4.19579221,10 L12.4833766,2.635 C12.8072074,2.3516646 12.9906964,1.95743003 12.9906964,1.545 C12.9906964,1.13256997 12.8072074,0.738335398 12.4833766,0.455 C11.7945941,-0.145677875 10.71938,-0.145677875 10.0305974,0.455 L0.516623377,8.91 C0.192792597,9.1933354 0.00930362125,9.58756997 0.00930362125,10 C0.00930362125,10.41243 0.192792597,10.8066646 0.516623377,11.09 L10.0251948,19.545 C10.7139774,20.1456779 11.7891915,20.1456779 12.477974,19.545 C12.8018048,19.2616646 12.9852938,18.86743 12.9852938,18.455 C12.9852938,18.04257 12.8018048,17.6483354 12.477974,17.365 L4.19579221,10 Z" id="Shape"></Path>
+          </G>
+        </G>
+      </Svg>
+    </View>
+  )
+}
+
+
 export {
   Triangle,
   Search,
   Setting,
   More,
-  SmallMore
+  SmallMore,
+  Back,
 
 }

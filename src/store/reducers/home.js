@@ -1,4 +1,7 @@
-function HOME(initialState = {balance:0,recentlyReminds:[]},action){
+function HOME(initialState = {
+  balance:0,
+  recentlyReminds:[],
+  recentlyAccounts:[]},action){
   switch (action.type){
     case 'CHANGE_BALANCE':
       return {
