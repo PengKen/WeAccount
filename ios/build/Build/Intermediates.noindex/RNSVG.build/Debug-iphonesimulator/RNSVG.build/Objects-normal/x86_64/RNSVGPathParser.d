@@ -1,8 +1,8 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native-svg/ios/Utils/RNSVGPathParser.m \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native-svg/ios/Utils/RNSVGPathParser.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native-svg/ios/Utils/RNSVGBezierElement.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native-svg/ios/Utils/RNSVGPathParser.m \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native-svg/ios/Utils/RNSVGPathParser.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native-svg/ios/Utils/RNSVGBezierElement.h

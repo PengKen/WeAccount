@@ -1,2 +1,3 @@
-dependencies: /Users/caimengxiang/Desktop/account/ios/weAccount/main.m \
-  /Users/caimengxiang/Desktop/account/ios/weAccount/AppDelegate.h
+dependencies: \
+  /Users/pengken/Desktop/毕设/code/forend/ios/weAccount/main.m \
+  /Users/pengken/Desktop/毕设/code/forend/ios/weAccount/AppDelegate.h

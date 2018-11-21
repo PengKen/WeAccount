@@ -39,8 +39,13 @@ class HomeAPI{
    *              date,
    *              cargoName,
    *              amount(货物数量),
+   *              price,
+   *              totalPrice,
+   *              needPay(尚需付)，
+   *              havePay(已付),
    *              transactionType(交易类型:{buy(买) , sale(卖)}),
    *              clientName(交易客户),
+   *              clientID,
    *              images:[url]
    *           }]
    */
@@ -55,3 +60,5 @@ class HomeAPI{
 
 
  export default HomeAPI
+
+console.log("a")

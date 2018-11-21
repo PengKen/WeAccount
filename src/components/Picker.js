@@ -15,13 +15,15 @@ import {
 } from 'react-native'
 class Picker extends Component{
   static propTypes = {
-    targetIndex:PropTypes.number,
+    pickerData:PropTypes.array.isRequired,// picker数组
+    targetIndex:PropTypes.number.isRequired,//目标picker在表单中的位置
+    lastConfirm:PropTypes.object.isRequired,//上一次确认的值，方便cancel回滚{targetIndex,value}
     cancel:PropTypes.string,             //取消按钮
     title:PropTypes.string,              //中间标题
     confirm:PropTypes.string,            //确认按钮
-    callBackValue:PropTypes.func, // confirm回调方法
-    callBackFoucsSelected:PropTypes.func, // 当前picked聚焦的值的回调方法
-    callBackCancleSelected:PropTypes.func, //用户取消picker的回调
+    callBackValue:PropTypes.func.isRequired, // confirm回调方法
+    callBackFoucsSelected:PropTypes.func.isRequired, // 当前picked聚焦的值的回调方法
+    callBackCancleSelected:PropTypes.func.isRequired, //用户取消picker的回调
     initialChoosen:PropTypes.number,      //初始选中的index
     synchronousRefresh:PropTypes.bool,   //是否同步刷新
   }
@@ -49,25 +51,25 @@ class Picker extends Component{
 
   /**
    * @desc 将选中的数据返回给父组件
-   * @param pickedValue
+   * @param this.props.targetIndex（picker在对应表单的索引），pickedValue
    * @private
    */
   _confirmValue(pickedValue){
-    this.props.callBackValue(this.props.targetIndex,pickedValue)
+    if(pickedValue[0]==="<null>")
+      pickedValue[0] = this.props.pickerData[0]
+    console.log(pickedValue)
+    this.props.callBackValue(this.props.targetIndex,pickedValue[0],'confirm')
   }
 
   /**
    * @desc 用户浏览pciker
-   * @param selectedValue
+   * @param this.props.targetIndex（picker在对应表单的索引），selectedValue
    * @private
    */
 
   _currentFoucsSelected(selectedValue){
-    // console.warn(this)
-    // // console.warn("aaa")
-    // this.props.targetNode.value = selectedValue
-    // console.warn(this.props.targetNode.value)
-    // // this.props.callBackFoucsSelected(selectedValue)
+
+   this.props.callBackFoucsSelected(this.props.targetIndex,selectedValue[0])
   }
 
   /**
@@ -75,7 +77,8 @@ class Picker extends Component{
    * @private
    */
   _canclePicker(){
-    this.props.callBackCancleSelected()
+    this.props.callBackCancleSelected(this.props.targetIndex,this.props.lastConfirm.value),
+    this._hide()
   }
 
   /**
@@ -126,28 +129,28 @@ class Picker extends Component{
       return
     else
       this.setState({isShowPicker:true})
-    RNPicker.init({
-      pickerData: this.props.pickerData,
-      selectedValue: [this.props.initialChoosen],
-      onPickerConfirm: pickedValue => {
-        this._confirmValue(pickedValue)
-        this._hide()
-      },
-      onPickerCancel: data => {
-       this._canclePicker()
-      },
-      onPickerSelect: selectedValue => {
-        this._currentFoucsSelected.call(this,selectedValue)
-      },
-      pickerBg:this.props.pickerBg,
-      pickerCancelBtnText:"取消",
-      pickerConfirmBtnText:"确定",
-      pickerTitleText:this.props.titleText,
-      pickerConfirmBtnColor:[74,144,226,1],
-      pickerCancelBtnColor:[0,0,59,0.6]
+      RNPicker.init({
+        pickerData: this.props.pickerData,
+        selectedValue: [this.props.initialChoosen],
+        onPickerConfirm: pickedValue => {
+          this._confirmValue(pickedValue)
+          this._hide()
+        },
+        onPickerCancel: data => {
+         this._canclePicker()
+        },
+        onPickerSelect: selectedValue => {
+          this._currentFoucsSelected.call(this,selectedValue)
+        },
+        pickerBg:this.props.pickerBg,
+        pickerCancelBtnText:"取消",
+        pickerConfirmBtnText:"确定",
+        pickerTitleText:this.props.titleText,
+        pickerConfirmBtnColor:[74,144,226,1],
+        pickerCancelBtnColor:[0,0,59,0.6]
 
-    });
-    RNPicker.show();
+      });
+      RNPicker.show();
   }
 
   render(){

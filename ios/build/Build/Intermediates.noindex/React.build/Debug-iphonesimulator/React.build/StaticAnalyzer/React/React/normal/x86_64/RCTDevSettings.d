@@ -1,23 +1,23 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Modules/RCTDevSettings.mm \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Modules/RCTDevSettings.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTBridge.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTBridge+Private.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTEventDispatcher.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Modules/RCTJSCSamplingProfiler.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Profiler/RCTProfile.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/DevSupport/RCTPackagerClient.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Inspector/RCTInspectorPackagerConnection.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Modules/RCTDevSettings.mm \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Modules/RCTDevSettings.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Modules/RCTJSCSamplingProfiler.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/DevSupport/RCTPackagerClient.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Inspector/RCTInspectorPackagerConnection.h

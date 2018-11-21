@@ -1,13 +1,13 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Text/TextInput/Multiline/RCTUITextView.m \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Text/TextInput/Multiline/RCTUITextView.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputViewProtocol.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputDelegate.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputDelegateAdapter.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/Text/TextInput/Multiline/RCTUITextView.m \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/Text/TextInput/Multiline/RCTUITextView.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputViewProtocol.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputDelegate.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputDelegateAdapter.h

@@ -1,2 +1,2 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Intermediates.noindex/weAccount.build/Debug-iphonesimulator/weAccount.build/DerivedSources/weAccount_vers.c
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Intermediates.noindex/weAccount.build/Debug-iphonesimulator/weAccount.build/DerivedSources/weAccount_vers.c

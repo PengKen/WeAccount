@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/cxxreact/Platform.cpp \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/cxxreact/Platform.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/cxxreact/ReactMarker.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/cxxreact/Platform.cpp \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/cxxreact/Platform.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/cxxreact/ReactMarker.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h

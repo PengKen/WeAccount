@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.cpp \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.cpp \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.h

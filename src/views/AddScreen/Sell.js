@@ -15,12 +15,14 @@ import {StyleSheet,
 import {connect} from "react-redux";
 import Picker from '../../components/Picker'
 import React,{Component} from 'react'
-import {Triangle,Back,PhotoAdd} from '../../icons/common'
+import {Triangle, Back, PhotoAdd, SmallClose} from '../../icons/common'
 import {THEME_COLOR} from "../../utils/constant";
 import Route from '../../utils/route'
 import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
 import DatePicker from 'react-native-datepicker';
 import {GlobalActions} from "../../store/actions/fetchActions";
+import ActionSheet from 'react-native-actionsheet'
+import ImagePicker from '../../components/ImagePicker'
 const MoreArrow = require('../../icons/moreArrow.png')
 class SellScreen extends Component<Props> {
   static navigationOptions = ({navigation}) => {
@@ -48,6 +50,7 @@ class SellScreen extends Component<Props> {
     this.state = {
       pickerData:[],
       targetIndex:0,
+      lastConfirm:{targetIndex:'',value:''},
       content:[
         {
           key:'cargo',
@@ -57,7 +60,9 @@ class SellScreen extends Component<Props> {
           maxLength:10,
           showArrow:true,
           type:'Text',
-          activeOpacity:1
+          activeOpacity:1,
+          value:props.cargoNameList[0]
+
         },
         {
           key:'amount',
@@ -71,11 +76,12 @@ class SellScreen extends Component<Props> {
         {
           key:'client',
           item:'货主',
-          value:null,
+          value:props.clientList[0],
           placeholder:'请选择或输入客户',
           showArrow:true,
           type:'Text',
-          activeOpacity:1
+          activeOpacity:1,
+
         },
         {
           key:'price',
@@ -116,46 +122,82 @@ class SellScreen extends Component<Props> {
 
       switch(key){
         case 'client':
-          this.setState({
-            targetIndex,
-            pickerData:this.props.clientList
-          })
-          this.refs.Picker.showPicker()
+          if(this.state.lastConfirm.targetIndex !== targetIndex){
+              this.setState({
+                  targetIndex,
+                  pickerData:this.props.clientList,
+                  lastConfirm:{targetIndex,value:this.props.clientList[0]}
+              },function () {
+                  this.refs.Picker.showPicker()
+              })
+          }else{
+              this.setState({
+                  targetIndex,
+                  pickerData:this.props.clientList,
+              },function () {
+                  this.refs.Picker.showPicker()
+              })
+          }
+
+
           break;
 
         case 'cargo':
-          this.setState({
-            targetIndex,
-            pickerData:this.props.cargoNameList
-          })
-          this.refs.Picker.showPicker()
+          if(this.state.lastConfirm.targetIndex !== targetIndex){
+              this.setState({
+                  targetIndex,
+                  pickerData:this.props.cargoNameList,
+                  lastConfirm:{targetIndex,value:this.props.cargoNameList[0]}
+              },function () {
+                  this.refs.Picker.showPicker()
+              })
+          }else{
+              this.setState({
+                  targetIndex,
+                  pickerData:this.props.cargoNameList
+              },function () {
+                  this.refs.Picker.showPicker()
+              })
+          }
+
+
           break;
     }
   }
 
 
-  _handlePickerValue = (targetIndex,value) => {
+  _handlePickerValue = (targetIndex,value,type) => {
 
     let {content = {}} = this.state
-    content[targetIndex]['value'] = value[0]
-
-    this.setState({
-      content
-    })
-
-  }
-  _handleSelectedrValue = (key,value) => {
-
-  }
-
-  _handlePickerCancle = (key,value) => {
+    content[targetIndex]['value'] = value
+    type==='confirm' ?  this.setState({ content, lastConfirm:{targetIndex,value} }) :this.setState({ content })
 
   }
 
 
   componentDidMount(){
-    this.props.getCargoList() //获取货物名称列表
-    this.props.getClientList() //获取客户列表
+      /**
+       * @desc 获取货物名称列表和客户列表，并初始化pciker的初始值
+       */
+    Promise.resolve(this.props.getCargoList())
+        .then(res => {
+            let {content = {}} = this.state
+            content[0].value = this.props.cargoNameList[0]
+            this.setState({
+                content,
+                lastConfirmValue:content[0].value
+            })
+          })
+
+    Promise.resolve(this.props.getClientList())
+        .then(res => {
+            let {content = {}} = this.state
+            content[2].value = this.props.clientList[0]
+            this.setState({
+                content,
+                lastConfirmValue:content[2].value
+            })
+        })
   }
 
   componentWillReceiveProps(nextProps,nextState){
@@ -175,7 +217,9 @@ class SellScreen extends Component<Props> {
   render() {
     return (
       <ScrollView style={styles.container} ref='scroll'>
-        <FlatList
+          {/* 表单列表 */}
+
+      <FlatList
           extraData={this.state}
           data={this.state.content}
           renderItem={({item,index}) =>
@@ -185,15 +229,18 @@ class SellScreen extends Component<Props> {
               </View>
             <View  style={styles.content} >
               <TouchableOpacity
-                activeOpacity={1}
+                activeOpacity={item.activeOpacity}
                 style={styles.TextWrapper}
                 onPress={this._showPciker.bind(this,item.key,index)}>
                 {
 
                   item.type === 'Text' ?
                     <Text
+                      ref={ o => this[item.key] = o}
                       style={!item.value? {color:'#D6D6D9'}:null}
-                    >{item.value ? item.value : item.placeholder}</Text> :
+                    >
+                        {item.value ? item.value : item.placeholder}</Text>
+                      :
                     <TextInput
                       value={item.value}
                       // onFocus={this.scrollViewTo.bind(this)}
@@ -226,13 +273,16 @@ class SellScreen extends Component<Props> {
           pickerData={this.state.pickerData}
           targetIndex={this.state.targetIndex}
           callBackValue={this._handlePickerValue}
-          // callBackFoucsSelected={this._handleSelectedrValue}
-          // callBackCancleSelected={this._handlePickerCancle}
+          callBackFoucsSelected={this._handlePickerValue}
+          callBackCancleSelected={this._handlePickerValue}
+          lastConfirm={this.state.lastConfirm}
 
         />
+        {/*账单备注*/}
+        <ScrollView style={styles.remark} onPress = {() => console.log('press')}>
 
-        <ScrollView style={styles.remark}>
           <TextInput
+            style={{height:scaleHeightSize(130)}}
             multiline={true}
             placeholder={"请补充此订单的其他相关信息或备注等等....(不超过200个词)"}
 
@@ -245,22 +295,35 @@ class SellScreen extends Component<Props> {
               keyExtractor={(item,index) => index.toString()}
               data={[1,2,3]}
             renderItem= {({item,index}) => (
-              <TouchableHighlight
-                  onPress = {(item) => console.log(index)}
+              <TouchableOpacity
+                  onPress = {(item) => ImagePicker.showImagePicker()}
                   style={styles.photo}>
-                <View>
+                <View style={{overflow:'visible' }}>
+                    <SmallClose style={{position:'absolute',top:scaleHeightSize(-9),right:scaleSize(-9)}}/>
                     <View style={{position:'absolute',top:scaleSize(15),height:scaleHeightSize(50),width:2,backgroundColor:"#D8D8D8",left:scaleSize(40)}}></View>
                     <View style={{position:'absolute',top:scaleHeightSize(40),height:2,width:scaleSize(50),backgroundColor:"#D8D8D8",left:scaleSize(15)}}></View>
 
-
-
                 </View>
-            </TouchableHighlight>)}
+            </TouchableOpacity>)}
           />
         </View>
 
+        <View style={styles.confirmWrapper}>
 
+            <TouchableOpacity style={styles.confirm}>
+                <Text style={{color:'#fff',fontWeight: 'bold'}}>完成</Text>
+            </TouchableOpacity>
 
+        </View>
+      {/* ActionSheet */}
+      <ActionSheet
+          ref={o => this.ActionSheet = o}
+          title={'Which one do you like ?'}
+          options={['Apple', 'Banana', 'cancel']}
+          cancelButtonIndex={2}
+          destructiveButtonIndex={1}
+          onPress={(index) => { /* do something */ }}
+      />
       </ScrollView>
 
 
@@ -323,22 +386,43 @@ const styles = StyleSheet.create({
   remark:{
     marginTop: scaleHeightSize(10),
     paddingLeft: scaleSize(20),
-    height:scaleHeightSize(130)
+    height:scaleHeightSize(130),
   },
   photos:{
     marginTop:scaleHeightSize(5),
     paddingLeft: scaleSize(20),
     flex:1,
     flexDirection:'row',
+    overflow: 'visible',
+    position:'relative',
 
   },
   photo:{
     marginRight: scaleSize(10),
-      height:scaleHeightSize(80),
-      width:scaleSize(80),
-      borderWidth:1,
-      borderColor:"#D8D8D8"
-  }
+    height:scaleSize(80),
+    width:scaleSize(80),
+    marginTop:10,
+    borderWidth:1,
+    borderColor:"#D8D8D8",
+    borderRadius: 5
+  },
+  confirmWrapper:{
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:scaleHeightSize(25),
+  },
+  confirm:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:5,
+    width:scaleSize(270),
+    height:scaleHeightSize(45),
+    backgroundColor:THEME_COLOR,
+
+  },
+
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(SellScreen);

@@ -136,6 +136,21 @@ const PhotoAdd = props => (
     </Svg>
 )
 
+const SmallClose = props => (
+    <View {...props}>
+        <Svg width={scaleHeightSize(17)} height={scaleHeightSize(17)} viewBox="0 0 17 17">
+            <G id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <G id="Group" transform="translate(1.000000, 1.000000)">
+                    <Circle id="Oval-7" stroke="#171515" fill="#171515" cx="7.5" cy="7.5" r="7.5"></Circle>
+                    <Path d="M3.5,11.5 L11.5,2.5" id="Line-19" stroke="#F2F2F2" stroke-width="1.5" stroke-linecap="square"></Path>
+                    <Path d="M4,3 L11.5,11.5" id="Line-20" stroke="#F2F2F2" stroke-width="1.5" stroke-linecap="square"></Path>
+                </G>
+            </G>
+        </Svg>
+    </View>
+)
+
+
 export {
   Triangle,
   Search,
@@ -143,6 +158,7 @@ export {
   More,
   SmallMore,
   Back,
-  PhotoAdd
+  PhotoAdd,
+  SmallClose
 
 }

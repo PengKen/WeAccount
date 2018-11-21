@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/React/Views/RCTActivityIndicatorView.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/React/Views/RCTActivityIndicatorView.h

@@ -14,7 +14,7 @@ const IS_IPHONEX = DeviceInfo.isIPhoneX_deprecated
 const THEME_COLOR = "#4A90E2"
 const BUY_COLOR = '#E75058';
 const SELL_COLOR = THEME_COLOR
-const API_URL = 'http://172.16.27.175:3000/api/'
+const API_URL = 'http://localhost:3000/api/'
 const DEVECE_HEIGHT = Dimensions.get('window').height;
 const DEVICE_WIDTH = Dimensions.get('window').width
 export {
