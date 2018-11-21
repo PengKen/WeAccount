@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/cxxreact/JSCPerfStats.cpp \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/ReactCommon/cxxreact/JSCPerfStats.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/cxxreact/JSCPerfStats.cpp \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/ReactCommon/cxxreact/JSCPerfStats.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h

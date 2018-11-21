@@ -1,9 +1,9 @@
 dependencies: \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDivisionAnimatedNode.m \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDivisionAnimatedNode.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
-  /Users/caimengxiang/Desktop/account/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/caimengxiang/Desktop/account/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDivisionAnimatedNode.m \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDivisionAnimatedNode.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
+  /Users/pengken/Desktop/毕设/code/forend/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/pengken/Desktop/毕设/code/forend/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h
