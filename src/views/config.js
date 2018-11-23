@@ -7,21 +7,22 @@ import AddScreen from './AddScreen'
 import FoundScreen from './FoundScreen'
 import PersonalScreen from './PersonalScreen'
 import React from "react";
-import {createBottomTabNavigator, createStackNavigator,TabNavigator} from 'react-navigation'
+import {createBottomTabNavigator, createStackNavigator,TabNavigator,createSwitchNavigator} from 'react-navigation'
 
   import { connect } from 'react-redux';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
-const middleware = createReactNavigationReduxMiddleware(
-  /*
-    所有的路由跳转都会经过这些中间件
-   */
-  'root',
-  // state => state.nav,
-  state => state.nav
-);
+import {View,Text} from 'react-native'
+// const middleware = createReactNavigationReduxMiddleware(
+//   /*
+//     所有的路由跳转都会经过这些中间件
+//    */
+//   'root',
+//   // state => state.nav,
+//   state => state.nav
+// );
 
 import {FilterDrawer} from './AccountScreen/filter'
 
@@ -96,7 +97,7 @@ const TabNavigatorScreen = createBottomTabNavigator(
 
   });
 
-const RootNavigator = createStackNavigator(
+const MainNavigator = createStackNavigator(
   {
     Main:{
       screen:TabNavigatorScreen,
@@ -116,7 +117,23 @@ const RootNavigator = createStackNavigator(
   },
 
 )
-const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');
+class Login extends React.Component{
+    render(){
+        return (
+            <View style={{flex:1,justifyContent: 'center',alignItems:'center'}} ><Text onPress={() => this.props.navigation.navigate('App')}>123</Text></View>
+        )
+    }
+}
+const RootNavigator = createSwitchNavigator(
+    {
+        AuthLoading: Login,
+        App: MainNavigator,
+    },
+    {
+        initialRouteName: 'AuthLoading',
+    }
+);
+// const AppWithNavigationState = reduxifyNavigator(MainNavigator, 'root');
 const mapStateToProps = (state) => ({
   /*
      reducers需要在此注册，内部的navigation-action才能生效
@@ -124,5 +141,5 @@ const mapStateToProps = (state) => ({
   state:state.nav
   // accountIndex:state.accountIndex
 });
-const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
-export { RootNavigator, AppNavigator, middleware,TabNavigatorScreen };
+// const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
+export { RootNavigator, TabNavigatorScreen };

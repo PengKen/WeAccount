@@ -12,16 +12,16 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger'
 import AppReducer from './src/store/reducers';
-import { AppNavigator, middleware } from './src/views/config';
+import { middleware,RootNavigator } from './src/views/config';
 
-const Store = createStore(AppReducer, applyMiddleware(middleware,thunk,createLogger));
+const Store = createStore(AppReducer, applyMiddleware(thunk,createLogger));
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
       <Provider store={Store}>
-        <AppNavigator />
+        <RootNavigator />
       </Provider>
     );
   }

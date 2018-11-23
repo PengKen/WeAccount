@@ -151,14 +151,25 @@ const SmallClose = props => (
 )
 
 
+const Logo = props => {
+    <View {...props}>
+        <Svg width={scaleSize(150)} height={scaleSize(150)} viewBox={"0 0 " +scaleSize(150)+" "+scaleSize(150)}>
+            <G id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <Rect id="Rectangle" stroke="#979797" fill="#4A90E2" x="0.5" y="0.5" width={scaleSize(150)}  height{scaleSize(150)}  rx="8"></Rect>
+            </G>
+        </Svg>
+    </View>
+}
+
 export {
-  Triangle,
-  Search,
-  Setting,
-  More,
-  SmallMore,
-  Back,
-  PhotoAdd,
-  SmallClose
+      Triangle,
+      Search,
+      Setting,
+      More,
+      SmallMore,
+      Back,
+      PhotoAdd,
+      SmallClose,
+      Logo
 
 }

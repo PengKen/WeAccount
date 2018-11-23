@@ -30,7 +30,9 @@ import RemindDetail from "../../views/HomeScreen/RemindDetail";
    *
    */
 
-const firstAction = RootNavigator.router.getActionForPathAndParams('Main');
+
+
+const firstAction = RootNavigator.router.getActionForPathAndParams('AuthLoading');
 
 const firstNavState = RootNavigator.router.getStateForAction(firstAction);
 
