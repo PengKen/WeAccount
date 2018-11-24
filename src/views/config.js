@@ -8,7 +8,7 @@ import FoundScreen from './FoundScreen'
 import PersonalScreen from './PersonalScreen'
 import React from "react";
 import {createBottomTabNavigator, createStackNavigator,TabNavigator,createSwitchNavigator} from 'react-navigation'
-
+import Login from './LoginScreen'
   import { connect } from 'react-redux';
 import {
   reduxifyNavigator,
@@ -117,13 +117,7 @@ const MainNavigator = createStackNavigator(
   },
 
 )
-class Login extends React.Component{
-    render(){
-        return (
-            <View style={{flex:1,justifyContent: 'center',alignItems:'center'}} ><Text onPress={() => this.props.navigation.navigate('App')}>123</Text></View>
-        )
-    }
-}
+
 const RootNavigator = createSwitchNavigator(
     {
         AuthLoading: Login,

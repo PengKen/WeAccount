@@ -1507,6 +1507,11 @@ babel-plugin-transform-react-jsx@^6.8.0:
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
 
+babel-plugin-transform-remove-console@^6.9.4:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-remove-console/-/babel-plugin-transform-remove-console-6.9.4.tgz#b980360c067384e24b357a588d807d3c83527780"
+  integrity sha1-uYA2DAZzhOJLNXpYjYB9PINSd4A=
+
 babel-plugin-transform-strict-mode@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-strict-mode/-/babel-plugin-transform-strict-mode-6.24.1.tgz#d5faf7aa578a65bbe591cf5edae04a0c67020758"
@@ -4748,6 +4753,11 @@ react-native-image-zoom-viewer@^2.2.23:
   integrity sha512-EoeinY71dZa5Wlpl4Lg0g6eiD7uETNBOwVTxT4FBfjCOVPnlgQUtmf1SGQT6OqZN/TpfQCbthoyDsA3kppHXKg==
   dependencies:
     react-native-image-pan-zoom "^2.1.9"
+
+react-native-linear-gradient@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.4.4.tgz#64944a39290eefbede18dfd7e9551f1ef61e3de7"
+  integrity sha512-j2py4Q/9kbbAERe+zZM/ZKjhhe83hYqREECGVfRJxcI1PYf4VPWJ0eth/1EUUTGiRMol8L0M5Zj8MK/KqdhYhw==
 
 react-native-picker@^4.3.7:
   version "4.3.7"

@@ -1,5 +1,5 @@
 import {scaleHeightSize, scaleSize} from "../utils/px2pt";
-import Svg, {Path, Rect, Circle, G, Text, TSpan, Polygon, Defs, Use, Image} from 'react-native-svg';
+import Svg, {Path, Rect, Circle, G, Text, TSpan, Polygon, Ellipse, Use, Image} from 'react-native-svg';
 import {Platform, StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
 
@@ -151,15 +151,21 @@ const SmallClose = props => (
 )
 
 
-const Logo = props => {
+const Logo = props => (
     <View {...props}>
-        <Svg width={scaleSize(150)} height={scaleSize(150)} viewBox={"0 0 " +scaleSize(150)+" "+scaleSize(150)}>
-            <G id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <Rect id="Rectangle" stroke="#979797" fill="#4A90E2" x="0.5" y="0.5" width={scaleSize(150)}  height{scaleSize(150)}  rx="8"></Rect>
+        <Svg width={scaleSize(110)} height={scaleSize(110)} viewBox={"0 0 " +scaleSize(110)+" "+scaleSize(110)}>
+
+            <G id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                {/*<Rect id="Rectangle" stroke="#979797" fill="#4A90E2" x="0.5" y="0.5" width="109" height="109" rx="8"></Rect>*/}
+                <Ellipse id="Oval" stroke="#FFFFFF" strokeWidth="5" fill="#4A90E2" cx="54.5" cy="54.5" rx="46.5" ry="47.5"></Ellipse>
+                <Text id="¥" fontFamily="PingFangSC-Semibold, PingFang SC" fontSize="80" fontWeight="500" letterSpacing="1.01157379" fill="#FFFFFF">
+                    <TSpan x={scaleSize(30)} y={scaleSize(85)}>¥</TSpan>
+                </Text>
             </G>
         </Svg>
+
     </View>
-}
+)
 
 export {
       Triangle,
