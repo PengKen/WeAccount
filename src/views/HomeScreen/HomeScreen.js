@@ -46,7 +46,7 @@ class HomeScreen extends Component<Props> {
   componentDidMount(){
 
     this.props.getAccountBalance()
-    this.props.getRecentlyAccounts()
+    this.props.getRecentlyAccounts().catch(err => console.log(err.message))
   }
   componentWillMount(){
 

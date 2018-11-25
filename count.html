@@ -6,16 +6,25 @@
     <script src="./src/components/CountUp.js"></script>
 </head>
 <body>
-    <div id="acv"></div>
-    <script>
-      function easeOutExpo(t, b, c, d) {
-        //[progress,startValue,length,duration]
-        // return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b;
-        return (-Math.pow(2, -10 * t / d) + 1)
-      }
-      console.log(easeOutExpo(0,100,500,2000))
-        var count = new CountUp('acv','300000','100',2,2,{prefix:'计算中'})
-        // count.start()
-    </script>
+<div id="acv"></div>
+<script>
+    var timer;
+    function timeout() {
+
+        return new Promise(function (resolve, reject) {
+                timer  = setTimeout(function () {
+                    console.log("i am  did")
+                    reject(new Error('timeout'))
+                }, 100)
+                resolve(100)
+            resolve(200)
+            }
+        )
+
+
+    }
+
+    timeout().then(res => console.log(res)).catch(err => console.log(err))
+</script>
 </body>
 </html>

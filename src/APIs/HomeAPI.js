@@ -8,7 +8,7 @@ class HomeAPI{
     @return { balance }
    */
   static getAccountBalance = () => {
-    return  HttpUtil.get("balances/"+1)
+    return  HttpUtil.fetch("balances/"+1)
   }
 
   /**
@@ -18,7 +18,7 @@ class HomeAPI{
    */
 
   static getUserCashier = (year) => {
-    return HttpUtil.get('cashiers/'+id+'?year='+year)
+    return HttpUtil.fetch('cashiers/'+id+'?year='+year)
   }
 
   /**
@@ -27,7 +27,7 @@ class HomeAPI{
    * @returns [{ remindId, summary(概要) , date , detail(消息内容)}]
    */
   static getReminds = (type = 'recently') => {
-    return HttpUtil.get('reminds/'+id +'?type='+type)
+    return HttpUtil.fetch('reminds/'+id +'?type='+type)
   }
 
 
@@ -50,7 +50,7 @@ class HomeAPI{
    *           }]
    */
   static getAccountsWithoutSpecific = (type = 'recently') => {
-    return HttpUtil.get('accounts/'+1 + '?type='+type)
+    return HttpUtil.fetch('accounts/'+1 + '?type='+type)
   }
 
 

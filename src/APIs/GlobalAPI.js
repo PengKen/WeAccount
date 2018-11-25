@@ -2,13 +2,22 @@
 import HttpUtil from '../utils/httpUtil'
 
 class GlobalAPI{
+
+
+
+
+  static login = (data) => {
+      return HttpUtil.fetch('login','POST',data)
+  }
+
+
   /**
    @desc 获取账户的货物列表
    @params null
    @return [{cargoName}]
    */
   static getCargoList = () => {
-    return  HttpUtil.get("cargo_list/"+1)
+    return  HttpUtil.fetch("cargo_list/"+1)
   }
 
   /**
@@ -16,7 +25,7 @@ class GlobalAPI{
    * @return [{clientId,name,phoneNumber,addTime}]
    */
   static getClientList = () => {
-    return  HttpUtil.get("client_list/"+1)
+    return  HttpUtil.fetch("client_list/"+1)
   }
 
 

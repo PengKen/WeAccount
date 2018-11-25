@@ -58,6 +58,14 @@ class Time {
     return moment().valueOf()
   }
 
+    /**
+     * @desc 毫秒数转为当前时间
+     * @param millSecond 毫秒
+     * @returns {string} 2018年9月26日 11：11：11
+     */
+  static millSecToDate = (millSecond) => {
+    return moment(millSecond).format('YYYY-MM-DD HH:mm:ss');
+  }
 }
 
 export default Time

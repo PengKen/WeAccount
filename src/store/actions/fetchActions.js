@@ -24,7 +24,28 @@ import GlobalAPI from '../../APIs/GlobalAPI'
 import TimeUtil from '../../utils/timeUtil'
 import CountUp from '../../components/CountUp'
 
+class CommonFuncs {
+    /**
+     * @param JsonData fetch请求收到的结果
+     * 所有的fetchActions 都要手动抛出异常，然后让对应的触发了此action的组件去手动catch
+     * error，并决定要toast什么信息
+     */
+    static throwError = (JsonData) => {
+      return new Promise(function (resolve,reject) {
+          if(JsonData.errorMessage)
+             reject(JsonData.errorMessage)
+          else
+            resolve('Everything is good!')
+      })
+
+    }
+}
 class HomeActions {
+
+
+
+
+
   /**
    * @desc 获取用户的总资产
    * @return {function(*, *)}
@@ -69,6 +90,8 @@ class HomeActions {
   static getRecentlyReminds = () => {
     return async (dispatch , getState) => {
       const recentlyReminds = await HomeAPI.getReminds()
+        console.log(recentlyReminds)
+        CommonFuncs.throwError(recentlyReminds)
       dispatch({
         type:'GET_RECENTLY_REMINDS',
         recentlyReminds
@@ -97,10 +120,17 @@ class HomeActions {
   static getRecentlyAccount = () => {
     return async (dispatch,getState) => {
       const recentlyAccounts = await  HomeAPI.getAccountsWithoutSpecific('recently')
-      dispatch({
-        type:'GET_RECENTLY_ACCOUNT_RECORD',
-        recentlyAccounts
-      })
+      return CommonFuncs.throwError(recentlyAccounts)
+          .then(res => dispatch({
+              type:'GET_RECENTLY_ACCOUNT_RECORD',
+              recentlyAccounts
+          }))
+          .catch(err => {throw new Error(err)})
+
+
+
+
+
     }
   }
 

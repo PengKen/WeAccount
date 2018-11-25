@@ -15,14 +15,14 @@ import {
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 import {View,Text} from 'react-native'
-// const middleware = createReactNavigationReduxMiddleware(
-//   /*
-//     所有的路由跳转都会经过这些中间件
-//    */
-//   'root',
-//   // state => state.nav,
-//   state => state.nav
-// );
+const middleware = createReactNavigationReduxMiddleware(
+  /*
+    所有的路由跳转都会经过这些中间件
+   */
+  'root',
+  // state => state.nav,
+  state => state.nav
+);
 
 import {FilterDrawer} from './AccountScreen/filter'
 
@@ -118,16 +118,17 @@ const MainNavigator = createStackNavigator(
 
 )
 
+
 const RootNavigator = createSwitchNavigator(
     {
         AuthLoading: Login,
-        App: MainNavigator,
+        App:MainNavigator,
     },
     {
         initialRouteName: 'AuthLoading',
     }
 );
-// const AppWithNavigationState = reduxifyNavigator(MainNavigator, 'root');
+const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');
 const mapStateToProps = (state) => ({
   /*
      reducers需要在此注册，内部的navigation-action才能生效
@@ -135,5 +136,5 @@ const mapStateToProps = (state) => ({
   state:state.nav
   // accountIndex:state.accountIndex
 });
-// const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
-export { RootNavigator, TabNavigatorScreen };
+const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
+export { RootNavigator, middleware ,AppNavigator,TabNavigatorScreen };
