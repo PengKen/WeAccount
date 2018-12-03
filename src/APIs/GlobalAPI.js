@@ -1,13 +1,19 @@
 
 import HttpUtil from '../utils/httpUtil'
-
+import {DEVICE_INFO} from "../utils/constant";
+import TimeUtil from '../utils/timeUtil'
 class GlobalAPI{
 
 
-
+    /**
+     * @desc 登录
+     * @param data { phone, password, deviceInfo, lastLoginTime } // lastLoginTime其实就是当前时间
+     * @return token
+     */
 
   static login = (data) => {
-      return HttpUtil.fetch('login','POST',data)
+      var data = {...data,DEVICE_INFO,lastLoginTime:TimeUtil.getCurrentFullTime()}
+      return HttpUtil.fetch('logins','POST',data)
   }
 
 
@@ -17,15 +23,15 @@ class GlobalAPI{
    @return [{cargoName}]
    */
   static getCargoList = () => {
-    return  HttpUtil.fetch("cargo_list/"+1)
+    return  HttpUtil.fetch("cargo_lists/"+1)
   }
 
   /**
    * @desc 获取用户的客户列表
-   * @return [{clientId,name,phoneNumber,addTime}]
+   * @return [{clientId,name,phone,addTime}]
    */
   static getClientList = () => {
-    return  HttpUtil.fetch("client_list/"+1)
+    return  HttpUtil.fetch("client_lists/"+1)
   }
 
 

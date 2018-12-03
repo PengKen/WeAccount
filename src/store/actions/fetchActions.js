@@ -90,8 +90,6 @@ class HomeActions {
   static getRecentlyReminds = () => {
     return async (dispatch , getState) => {
       const recentlyReminds = await HomeAPI.getReminds()
-        console.log(recentlyReminds)
-        CommonFuncs.throwError(recentlyReminds)
       dispatch({
         type:'GET_RECENTLY_REMINDS',
         recentlyReminds
@@ -105,7 +103,7 @@ class HomeActions {
    */
   static getAllReminds = () => {
     return async (dispatch, getState) => {
-      const allReminds = await  HomeAPI.getReminds('all')
+      const allReminds = await HomeAPI.getReminds('all')
       dispatch({
         type:'GET_ALL_REMINDS',
         allReminds
@@ -120,12 +118,10 @@ class HomeActions {
   static getRecentlyAccount = () => {
     return async (dispatch,getState) => {
       const recentlyAccounts = await  HomeAPI.getAccountsWithoutSpecific('recently')
-      return CommonFuncs.throwError(recentlyAccounts)
-          .then(res => dispatch({
+          dispatch({
               type:'GET_RECENTLY_ACCOUNT_RECORD',
               recentlyAccounts
-          }))
-          .catch(err => {throw new Error(err)})
+          })
 
 
 
@@ -154,12 +150,27 @@ class HomeActions {
 }
 
 class GlobalActions {
+
+
+
+  static login = (data) => {
+    return async (dispatch, getState) => {
+      const token = await GlobalAPI.login(data)
+      dispatch({
+          type:'GET_AUTHORIZATION_TOKEN',
+          token:token.token
+      })
+    }
+  }
+
+
+
   /**
    * @desc 获取货物名称列表
    * @param year
    * @return {function(*, *)}
    */
-  static  getCargoList = () => {
+  static  getCargoNameList = () => {
     return async (dispatch , getState) => {
       const cargoNameList = await GlobalAPI.getCargoList()
       dispatch({
@@ -169,7 +180,11 @@ class GlobalActions {
     }
   }
 
-  static getClientList = () => {
+    /**
+     * @desc 获取客户列表
+     * @returns {Function}
+     */
+  static getClientNameList = () => {
     return async (dispatch,getState) => {
       const clientList = await GlobalAPI.getClientList()
       dispatch({

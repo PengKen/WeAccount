@@ -61,7 +61,7 @@ class AccountItem extends Component {
               <View style={{marginTop:scaleHeightSize(3)}}>
                 <Text style={transactionType === 'buy' ? styles.buy : styles.sell}>
                   {/*金额*/}
-                  {(transactionType === 'buy'? '- ¥ ' : '+ ¥ ') + formatNumber(item.money) + '元'}
+                  {(transactionType === 'buy'? '- ¥ ' : '+ ¥ ') + formatNumber(item.price) + '元'}
                 </Text>
               </View>
 

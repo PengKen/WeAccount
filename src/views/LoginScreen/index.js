@@ -1,3 +1,5 @@
+import {GlobalActions, HomeActions} from "../../store/actions/fetchActions";
+
 ;import LinearGradient from 'react-native-linear-gradient'
 import React from "react";
 import {Text, View, StyleSheet,TextInput,Image,TouchableOpacity,TouchableHighlight,Modal} from "react-native";
@@ -5,7 +7,9 @@ import {DEVICE_WIDTH, DEVECE_HEIGHT, THEME_COLOR, DEVICE_INFO} from "../../utils
 import { Logo } from "../../icons/common";
 import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
 import Loading from '../../components/Loading'
-export default class Login extends React.Component{
+import GlobalAPI from "../../APIs/GlobalAPI";
+import connect from "react-redux/es/connect/connect";
+class LoginScreen extends React.Component{
 
     constructor(props){
         super(props)
@@ -37,6 +41,13 @@ export default class Login extends React.Component{
     _handlePassword = (password) => {
 
     }
+
+    _handleLogin = () => {
+        this.props.login({phone:this.state.phone,password:this.state.password})
+            .then(success => this.props.navigation.navigate('App'))
+
+    }
+
 
     render() {
         return (
@@ -91,7 +102,7 @@ export default class Login extends React.Component{
                                     null
                                 }
                                 <TouchableOpacity
-                                    onPress = {() => { console.log(DEVICE_INFO); this.props.navigation.navigate('App') }}
+                                    onPress = { this._handleLogin }
                                 >
                                     <View style={styles.loginButton}>
                                         <Text  style={{color:'white',fontWeight: '700',fontSize:scaleSize(15)}}>登录</Text>
@@ -99,13 +110,18 @@ export default class Login extends React.Component{
                                 </TouchableOpacity>
 
                             </View>
-                            <Loading showLoading={false}/>
-                        </View>
+                    </View>
             </LinearGradient>
 
                     )
                 }
         }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (data) => dispatch(GlobalActions.login(data))
+    }
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -167,3 +183,4 @@ const styles = StyleSheet.create({
         opacity:0.5
     }
 });
+export default connect(null,mapDispatchToProps)(LoginScreen)

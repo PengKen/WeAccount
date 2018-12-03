@@ -46,7 +46,9 @@ class HomeScreen extends Component<Props> {
   componentDidMount(){
 
     this.props.getAccountBalance()
-    this.props.getRecentlyAccounts().catch(err => console.log(err.message))
+    this.props.getRecentlyAccounts()
+    this.props.getCargoNameList()
+    this.props.getClientNameList()
   }
   componentWillMount(){
 
@@ -215,7 +217,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleMask: (type) => dispatch({type}),
     getAccountBalance: () => dispatch(HomeActions.getAccountBalance()),
-    getRecentlyAccounts: () => dispatch(HomeActions.getRecentlyAccount())
+    getRecentlyAccounts: () => dispatch(HomeActions.getRecentlyAccount()),
+    getCargoNameList: () => dispatch(GlobalActions.getCargoNameList()),
+    getClientNameList: () => dispatch(GlobalActions.getClientNameList())
   }
 }
 const styles = StyleSheet.create({
@@ -276,7 +280,6 @@ const styles = StyleSheet.create({
     color:'red',
     flex:0,
     flexWrap:'wrap',
-    paddingLeft:scaleSize(5),
   },
   content:{
     backgroundColor:'#EDEDED',

@@ -9,7 +9,7 @@ import {scaleHeightSize} from "../utils/px2pt";
 const NoData = (props) => {
   return (
     <View style={[styles.container,{height:props.height || scaleHeightSize(150)}]}>
-      <Text>{props.message}</Text>
+      {/*<Text>{props.message}</Text>*/}
     </View>
   )
 }

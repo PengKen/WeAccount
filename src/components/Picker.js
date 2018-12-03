@@ -155,15 +155,18 @@ class Picker extends Component{
 
   render(){
     return (
-      <Animated.View
-        style={[styles.contain,{transform: [{
-            translateY: this.state.xPosition.interpolate({
-              inputRange: [0, 1],
-              outputRange: [DEVECE_HEIGHT  , 0]
-            }),
-          }]
-        } ]}>
-      </Animated.View>
+       <View>
+         <Text>12321412</Text>
+       </View>
+      {/*<Animated.View*/}
+        {/*style={[styles.contain,{transform: [{*/}
+            {/*translateY: this.state.xPosition.interpolate({*/}
+              {/*inputRange: [0, 1],*/}
+              {/*outputRange: [DEVECE_HEIGHT  , 0]*/}
+            {/*}),*/}
+          {/*}]*/}
+        {/*} ]}>*/}
+      {/*</Animated.View>*/}
     )
   }
 
