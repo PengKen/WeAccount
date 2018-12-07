@@ -7,7 +7,29 @@ import {NavigationActions, withNavigation} from "react-navigation";
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { connect } from 'react-redux'
 import {BUY_COLOR, SELL_COLOR} from "../utils/constant";
+import PropTypes from "prop-types";
 class AccountItem extends Component {
+
+    static propTypes = {
+        item:PropTypes.object.isRequired,// 具体的账单详细内容
+        /**
+          *                accountId,
+          *                date,
+          *                cargoName,
+          *                amount(货物数量),
+          *                price,
+          *                totalPrice,
+          *                needPay(尚需付)，
+          *                havePay(已付),
+          *                transactionType(交易类型:{buy(买) , sale(卖)}),
+          *                clientName(交易客户),
+          *                clientId,
+          *                images:[url]
+         */
+    }
+
+
+
 
   /**
    * @desc 跳转到账单详情页

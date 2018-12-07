@@ -27,7 +27,8 @@ class HomeAPI{
    * @returns [{ remindId, summary(概要) , date , detail(消息内容)}]
    */
   static getReminds = (type = 'recently') => {
-    return HttpUtil.fetch('reminds/'+id +'?type='+type)
+
+    return HttpUtil.fetch('reminds/'+1 +'?type='+type)
   }
 
 
@@ -45,7 +46,7 @@ class HomeAPI{
    *              havePay(已付),
    *              transactionType(交易类型:{buy(买) , sale(卖)}),
    *              clientName(交易客户),
-   *              clientID,
+   *              clientId,
    *              images:[url]
    *           }]
    */

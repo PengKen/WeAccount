@@ -7,7 +7,7 @@ import {Sell,Buy,Contact } from '../icons/addMenu'
 import {scaleSize,scaleHeightSize} from "../utils/px2pt";
 import {connect} from "react-redux";
 import maskAction from '../store/actions/maskAction'
-import {DEVECE_HEIGHT} from "../utils/constant";
+import { DEVICE_HEIGHT} from "../utils/constant";
 import {NavigationActions,withNavigation} from "react-navigation";
 
 class Mask extends Component {
@@ -15,12 +15,13 @@ class Mask extends Component {
     super(props);//这一句不能省略，照抄即可
 
     this.state = {
-      animationType: 'none',//none slide fade
+      animationType: 'fade',//none slide fade
       modalVisible: props.isShowMask,//模态场景是否可见
       transparent: true,//是否透明显示
       SellAnim: {
-            left:new Animated.Value(scaleSize(153)),
-            bottom:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(20) :  scaleSize(-14)),
+            translateX:new Animated.Value(scaleSize(153)),
+            // translateY:new Animated.Value(DeviceInfo.isIPhoneX_deprecated ? scaleSize(20) :  scaleSize(-14)),
+            translateY:new Animated.Value(scaleSize(600)),
             opacity:new Animated.Value(1)},
       BuyAnim: {
             left:new Animated.Value(scaleSize(153)),
@@ -35,6 +36,7 @@ class Mask extends Component {
   }
   _setModalVisible = (visible) => {
     this.setState({modalVisible: visible});
+    this.props.toggleMask({type:false})
   }
   startShow = () => {
 
@@ -73,17 +75,18 @@ class Mask extends Component {
       //sale
 
       Animated.timing(                  // 随时间变化而执行动画
-        this.state.SellAnim.left,            // 动画中的变量值
+        this.state.SellAnim.translateX,            // 动画中的变量值
         {
           easing: Easing.linear,
           toValue: scaleSize(saleLeft),     // 透明度最终变为1，即完全不透明
           duration: 500,              // 让动画持续一段时间
         }),
       Animated.timing(
-        this.state.SellAnim.bottom,
+        this.state.SellAnim.translateY,
         {
           easing: Easing.linear,
-          toValue:scaleSize( DeviceInfo.isIPhoneX_deprecated ? 34 + saleBottom : saleBottom ),
+          // toValue:scaleSize( DeviceInfo.isIPhoneX_deprecated ? 34 + saleBottom : saleBottom ),
+          toValue:scaleHeightSize(saleBottom),
           duration:500
         }
       ),
@@ -149,7 +152,7 @@ class Mask extends Component {
   }
 
   _animatBack = () => {
-    this.animateMove({saleLeft:153,saleBottom:-14,saleOpacity:0,buyBottom:-14,contactBottom:-14,contactRight:153})
+    this.animateMove({saleLeft:153,saleBottom:600,saleOpacity:0,buyBottom:-14,contactBottom:-14,contactRight:153})
 
     setTimeout(
       () => {
@@ -170,7 +173,7 @@ class Mask extends Component {
                onShow = {()=>{
                  this.animateMove({
                    saleLeft:63,
-                   saleBottom:100,
+                   saleBottom:500,
                    saleOpacity:1,
                    buyBottom:150,
                    contactRight:63,
@@ -192,44 +195,54 @@ class Mask extends Component {
             activeOpacity={1}
             onPress = { this._animatBack }
             >
-            <View style={styles.menu}>
-              <Animated.View style={{
-                position:'absolute',
-                left:this.state.SellAnim.left,
-                bottom:this.state.SellAnim.bottom,
-                opacity:this.state.SellAnim.opacity
+              <View style={styles.menu}>
+                  <Animated.View style={[{
+                      // position:'absolute',
+                      // left:this.state.SellAnim.left,
+                      // bottom:this.state.SellAnim.bottom,
+                      opacity:this.state.SellAnim.opacity
 
-              }}>
-                <TouchableOpacity onPress={this._goToSellScreen} >
-                  <Sell />
-                </TouchableOpacity>
-              </Animated.View>
-
-
-
-                <Animated.View  style={{
-                  position:'absolute',
-                  left:this.state.BuyAnim.left,
-                  bottom:this.state.BuyAnim.bottom,
-                  opacity:this.state.BuyAnim.opacity}}>
-                  <TouchableOpacity>
-                    <Buy />
-                  </TouchableOpacity>
-                </Animated.View>
+                  },
+                      {
+                          transform:[
+                              {
+                                  translateX:this.state.SellAnim.translateX,
+                              },
+                              {
+                                  translateY:this.state.SellAnim.translateY,
+                              }
+                              ]
+                      } ]}>
+                      <TouchableOpacity onPress={this._goToSellScreen} >
+                          <Sell />
+                      </TouchableOpacity>
+                  </Animated.View>
 
 
 
-              <Animated.View style={{
-                position:'absolute',
-                right:this.state.ContactAnim.right,
-                bottom:this.state.ContactAnim.bottom,
-                opacity:this.state.ContactAnim.opacity}}>
-                <TouchableOpacity >
-                  <Contact  />
-                </TouchableOpacity>
-              </Animated.View>
+                  <Animated.View  style={{
+                      position:'absolute',
+                      left:this.state.BuyAnim.left,
+                      bottom:this.state.BuyAnim.bottom,
+                      opacity:this.state.BuyAnim.opacity}}>
+                      <TouchableOpacity>
+                          <Buy />
+                      </TouchableOpacity>
+                  </Animated.View>
 
-            </View>
+
+
+                  <Animated.View style={{
+                      position:'absolute',
+                      right:this.state.ContactAnim.right,
+                      bottom:this.state.ContactAnim.bottom,
+                      opacity:this.state.ContactAnim.opacity}}>
+                      <TouchableOpacity >
+                          <Contact  />
+                      </TouchableOpacity>
+                  </Animated.View>
+
+              </View>
           </TouchableOpacity>
 
         </Modal>
@@ -247,7 +260,7 @@ const styles = StyleSheet.create({
   menu:{
     width:scaleSize(375),
     //这里的高度适配有问题
-    height:DEVECE_HEIGHT,
+    height:DEVICE_HEIGHT,
     backgroundColor:'rgba(0,0,0,0.5)',
     // zIndex:998,
     // bottom:scaleSize(68),
@@ -255,7 +268,7 @@ const styles = StyleSheet.create({
 
   },
   sell:{
-    position:'absolute',
+    // position:'absolute',
     bottom:scaleSize(73)
 
   },

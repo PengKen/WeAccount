@@ -12,7 +12,7 @@ import renderIcon from '../../icons/renderIcon'
 import Account from './account'
 import Report from './report'
 import AccountHeader from './header'
-
+import FilterScreen from './filter'
 import {createMaterialTopTabNavigator, createDrawerNavigator,SafeAreaView,TabNavigator,TabBarBottom} from 'react-navigation'
 type Props = {};
 
@@ -38,22 +38,7 @@ type Props = {};
 
 
 
-class FilterScreen extends Component<Props> {
 
-
-  componentWillMount() {
-
-  }
-
-  render() {
-
-    return (
-      <View>
-        <Text>{"Drawer"}</Text>
-      </View>
-    )
-  }
-}
 
   /*
       Account 顶部的tab页面嵌套在Drawer页面中，

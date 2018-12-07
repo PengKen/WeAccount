@@ -76,6 +76,14 @@ class AccountDeatil extends Component {
                     placeholder: '0,000.00元',
                     type: 'Text',
                     activeOpacity: 1
+                },
+                {
+                    key:'remark',
+                    placeholder: '0,000.00元',
+                    type: 'TextInput',
+                    activeOpacity: 1,
+                    multiline:true
+
                 }
 
 
@@ -149,14 +157,14 @@ class AccountDeatil extends Component {
                         pickerData: this.props.clientNameList,
                         lastConfirm: {targetIndex, value: this.props.clientNameList[0]}
                     }, function () {
-                        this.refs.Pickers.showPicker()
+                        this.refs.Picker.showPicker()
                     })
                 } else {
                     this.setState({
                         targetIndex,
                         pickerData: this.props.clientNameList,
                     }, function () {
-                        this.refs.Pickers.showPicker()
+                        this.refs.Picker.showPicker()
                     })
                 }
 
@@ -231,33 +239,14 @@ class AccountDeatil extends Component {
         this.props.navigation.setParams({saveState: true})
     }
 
-    /**
-     * @desc 获取picker最终confirm的值
-     * @param pickedValue
-     */
-    _handlecargoNameListPickerValue = (pickedValue) => {
-        console.log(pickedValue)
-    }
 
-    /**
-     * @desc 获取picked每次聚焦的值，该值要即时渲染在screen中
-     * @private
-     */
-    _handlecargoNameListSelectedrValue = (selectedValue) => {
-        this.setState({cargoName: selectedValue})
-    }
 
-    /**
-     * @desc 点击文本展示picker
-     * @private
-     */
-    _showcargoNameListPicker = () => {
-        this.refs.cargoNameListPicker.showPicker()
 
-    }
 
-    _handlePickerValue = () => {
-
+    _handlePickerValue = (targetIndex,value,type) => {
+        let {content = {}} = this.state
+        content[targetIndex]['value'] = value
+        type==='confirm' ?  this.setState({ content, lastConfirm:{targetIndex,value} }) :this.setState({ content })
     }
     /**
      * @desc 展示图片预览器
@@ -285,7 +274,7 @@ class AccountDeatil extends Component {
                     extraData={this.state}
                     data={this.state.content}
                     renderItem={({item, index}) =>
-                        <View style={styles.wrapper} ref='clientName'>
+                        <View style={styles.wrapper}>
                             <View style={styles.items}>
                                 <Text style={[styles.text, {}]}>{item.item}</Text>
                             </View>
@@ -312,6 +301,7 @@ class AccountDeatil extends Component {
                                                 placeholder={item.placeholder}
                                                 maxLength={item.maxLength}
                                                 keyboardType={item.keyboardType}
+                                                multiline={item.multiline}
 
 
                                             />
@@ -361,7 +351,7 @@ class AccountDeatil extends Component {
                 />
 
                 <Picker
-                    ref={'Pickers'}
+                    ref={'Picker'}
                     pickerData={this.state.pickerData}
                     targetIndex={this.state.targetIndex}
                     callBackValue={this._handlePickerValue}
@@ -408,17 +398,9 @@ const styles = StyleSheet.create({
         paddingBottom: scaleHeightSize(3)
 
     },
-    item: {
-        marginRight: scaleSize(8),
-        marginBottom: scaleSize(-5),
-        flex: 0,
-        justifyContent: "center",
-        height: scaleHeightSize(20),
-        width: scaleSize(60),
 
-    },
     items: {
-        marginRight: scaleSize(15),
+        marginLeft:scaleSize(5),
         flex: 0,
         justifyContent: "center",
         height: scaleHeightSize(20),
@@ -432,7 +414,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#4A4A4A',
-        textAlign: 'center',
+        textAlign: 'left',
         textAlignVertical: 'top',
     },
     save: {

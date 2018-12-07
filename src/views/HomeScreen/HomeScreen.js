@@ -40,13 +40,19 @@ class HomeScreen extends Component<Props> {
   constructor(){
     super()
     this.state = {
-      refreshing:true
+        recentlyAccountsRefreshing:true,
+        recentlyRemindsRefreshing: true
     }
   }
   componentDidMount(){
 
     this.props.getAccountBalance()
-    this.props.getRecentlyAccounts()
+    this.props.getRecentlyAccounts().then(ok => {
+        this.setState({recentlyAccountsRefreshing:false})
+    })
+    this.props.getRecentlyReminds().then(ok => {
+        this.setState({recentlyRemindsRefreshing:false})
+    })
     this.props.getCargoNameList()
     this.props.getClientNameList()
   }
@@ -133,9 +139,8 @@ class HomeScreen extends Component<Props> {
             </View>
             <View style={styles.remindItemWrapper}>
               <FlatList
-
-                data={[{summary: '撒打算打算的',remindId:1,date:'2018/3/4',detail:'撒数据恢复看见啊事故发生过复活节啊沙发上几个发射管发射管法快速减肥噶开始发噶所发生的啊沙发哈沙发上打算打算的'}, {remindId:2,summary:'撒发生打算发',date:'2019/3/4',detail:'撒打算阿斯顿哈师傅哈身份卡发撒舒服'}]}
-                ItemSeparatorComponent={ItemSeparatorComponent}
+                data={this.props.recentlyReminds}
+                ItemSeparatorComponent={ ItemSeparatorComponent}
                 keyExtractor={
                   /*使用item.remindId作为key*/
                   (item) => item.remindId.toString()
@@ -143,16 +148,16 @@ class HomeScreen extends Component<Props> {
                 }
                 ListEmptyComponent={NoData({message:"no message"})}
                 onRefresh={this._onRefresh}
-                refreshing={this.state.refreshing}
+                refreshing={this.state.recentlyRemindsRefreshing}
                 renderItem={({item}) => (
                   <TouchableHighlight style={{
                     paddingTop:scaleHeightSize(12),
                     paddingBottom:scaleHeightSize(12),
                     paddingLeft:scaleSize(27),
                     paddingRight:scaleSize(27)}}
-                                      activeOpacity ={0.2}
-                                      underlayColor ={'#BABABA'}
-                                      onPress = {this._goToRemindDetail.bind(null,{key:item.remindId})}
+                    activeOpacity ={0.2}
+                    underlayColor ={'#BABABA'}
+                    onPress = {this._goToRemindDetail.bind(null,{key:item.remindId})}
                   >
                     <View>
                       <Text style={{fontSize:scaleSize(11)}}>{item.summary}</Text>
@@ -190,7 +195,7 @@ class HomeScreen extends Component<Props> {
                 }
                 ListEmptyComponent={NoData({message:"no message"})}
                 onRefresh={this._onRefresh}
-                refreshing={this.state.refreshing}
+                refreshing={this.state.recentlyAccountsRefreshing}
                 renderItem={({item}) => (<AccountItem item={item}/>)
                 }
               />
@@ -219,7 +224,8 @@ const mapDispatchToProps = (dispatch) => {
     getAccountBalance: () => dispatch(HomeActions.getAccountBalance()),
     getRecentlyAccounts: () => dispatch(HomeActions.getRecentlyAccount()),
     getCargoNameList: () => dispatch(GlobalActions.getCargoNameList()),
-    getClientNameList: () => dispatch(GlobalActions.getClientNameList())
+    getClientNameList: () => dispatch(GlobalActions.getClientNameList()),
+    getRecentlyReminds: () => dispatch(HomeActions.getRecentlyReminds())
   }
 }
 const styles = StyleSheet.create({

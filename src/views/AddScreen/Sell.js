@@ -21,8 +21,8 @@ import Route from '../../utils/route'
 import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
 import DatePicker from 'react-native-datepicker';
 import {GlobalActions} from "../../store/actions/fetchActions";
-import ActionSheet from 'react-native-actionsheet'
 import ImagePicker from '../../components/ImagePicker'
+import formatNumber from "../../utils/formatNumber";
 const MoreArrow = require('../../icons/moreArrow.png')
 class SellScreen extends Component<Props> {
   static navigationOptions = ({navigation}) => {
@@ -76,7 +76,7 @@ class SellScreen extends Component<Props> {
         {
           key:'client',
           item:'货主',
-          value:props.clientList[0],
+          value:props.clientNameList[0],
           placeholder:'请选择或输入客户',
           showArrow:true,
           type:'Text',
@@ -84,7 +84,6 @@ class SellScreen extends Component<Props> {
 
         },
         {
-          key:'price',
           item:'单价',
           placeholder:'请输入单价(元/吨)',
           keyboardType:'numeric',
@@ -102,7 +101,8 @@ class SellScreen extends Component<Props> {
           key:'needPay',
           item:'尚未付',
           placeholder:'0,000.00元',
-          type:'Text',
+          type:'TextInput',
+          keyboardType:'numeric',
           activeOpacity:1
         }
 
@@ -125,15 +125,15 @@ class SellScreen extends Component<Props> {
           if(this.state.lastConfirm.targetIndex !== targetIndex){
               this.setState({
                   targetIndex,
-                  pickerData:this.props.clientList,
-                  lastConfirm:{targetIndex,value:this.props.clientList[0]}
+                  pickerData:this.props.clientNameList,
+                  lastConfirm:{targetIndex,value:this.props.clientNameList[0]}
               },function () {
                   this.refs.Picker.showPicker()
               })
           }else{
               this.setState({
                   targetIndex,
-                  pickerData:this.props.clientList,
+                  pickerData:this.props.clientNameList,
               },function () {
                   this.refs.Picker.showPicker()
               })
@@ -165,7 +165,13 @@ class SellScreen extends Component<Props> {
     }
   }
 
-
+    /**
+     * @desc picker 回调
+     * @param targetIndex
+     * @param value
+     * @param type
+     * @private
+     */
   _handlePickerValue = (targetIndex,value,type) => {
 
     let {content = {}} = this.state
@@ -174,12 +180,49 @@ class SellScreen extends Component<Props> {
 
   }
 
+    /**
+     * @修改表单中的值，并回馈到content中对应的项中
+     * @param targetIndex
+     * @param value
+     * @private
+     */
+    _handleContentTextInputValue = (targetIndex,value) => {
+        let {content = {}} = this.state
+        content[targetIndex]['value'] = value
+        this.setState({ content })
+    }
+
+    /**
+     * @desc 将数值格式化
+     * @param targetIndex
+     * @private
+     */
+    _formatValue = (targetIndex) =>{
+        let {content = {}} = this.state
+        if(!content[targetIndex]['value']) return
+        content[targetIndex]['value'] = formatNumber(content[targetIndex]['value'])
+        this.setState({ content })
+    }
+
+    /**
+     * @desc 将格式化数值恢复，即去掉逗号
+     * @param targetIndex
+     * @private
+     */
+    _recoverValue = (targetIndex) => {
+        let {content = {}} = this.state
+        if(!content[targetIndex]['value']) return
+        let currentValue =  content[targetIndex]['value']
+        content[targetIndex]['value'] = currentValue.replace(/,/g,'')
+        this.setState({ content })
+    }
+
 
   componentDidMount(){
       /**
        * @desc 获取货物名称列表和客户列表，并初始化pciker的初始值
        */
-    Promise.resolve(this.props.getCargoList())
+    Promise.resolve(this.props.getCargoNameList())
         .then(res => {
             let {content = {}} = this.state
             content[0].value = this.props.cargoNameList[0]
@@ -189,10 +232,10 @@ class SellScreen extends Component<Props> {
             })
           })
 
-    Promise.resolve(this.props.getClientList())
+    Promise.resolve(this.props.getClientNameList())
         .then(res => {
             let {content = {}} = this.state
-            content[2].value = this.props.clientList[0]
+            content[2].value = this.props.clientNameList[0]
             this.setState({
                 content,
                 lastConfirmValue:content[2].value
@@ -249,8 +292,9 @@ class SellScreen extends Component<Props> {
                       placeholder={item.placeholder}
                       maxLength={item.maxLength}
                       keyboardType={item.keyboardType}
-
-
+                      onChangeText={this._handleContentTextInputValue.bind(this,index)}
+                      onBlur={this._formatValue.bind(this,index)}
+                      onFocus={this._recoverValue.bind(this,index)}
                     />
 
                 }
@@ -315,15 +359,6 @@ class SellScreen extends Component<Props> {
             </TouchableOpacity>
 
         </View>
-      {/* ActionSheet */}
-      <ActionSheet
-          ref={o => this.ActionSheet = o}
-          title={'Which one do you like ?'}
-          options={['Apple', 'Banana', 'cancel']}
-          cancelButtonIndex={2}
-          destructiveButtonIndex={1}
-          onPress={(index) => { /* do something */ }}
-      />
       </ScrollView>
 
 
@@ -334,15 +369,15 @@ class SellScreen extends Component<Props> {
 const mapStateToProps = (state) => {
   return {
     cargoNameList:state.GLOBAL.cargoNameList,
-    clientList:state.GLOBAL.clientList
+    clientNameList:state.GLOBAL.clientNameList
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleMask: (type) => dispatch({type}),
-    getCargoList: () => dispatch(GlobalActions.getCargoList()),
-    getClientList:() => dispatch(GlobalActions.getClientList())
+    getCargoNameList: () => dispatch(GlobalActions.getCargoNameList()),
+    getClientNameList:() => dispatch(GlobalActions.getClientNameList())
   }
 }
 

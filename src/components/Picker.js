@@ -1,7 +1,7 @@
 import React ,{Component} from 'react'
 import PropTypes from 'prop-types';
 import RNPicker from 'react-native-picker';
-import {DEVICE_WIDTH, DEVECE_HEIGHT, THEME_COLOR} from '../utils/constant'
+import {DEVICE_WIDTH, THEME_COLOR, DEVICE_HEIGHT} from '../utils/constant'
 import {
   AppRegistry,
   Text,
@@ -155,18 +155,15 @@ class Picker extends Component{
 
   render(){
     return (
-       <View>
-         <Text>12321412</Text>
-       </View>
-      {/*<Animated.View*/}
-        {/*style={[styles.contain,{transform: [{*/}
-            {/*translateY: this.state.xPosition.interpolate({*/}
-              {/*inputRange: [0, 1],*/}
-              {/*outputRange: [DEVECE_HEIGHT  , 0]*/}
-            {/*}),*/}
-          {/*}]*/}
-        {/*} ]}>*/}
-      {/*</Animated.View>*/}
+      <Animated.View
+        style={[styles.contain,{transform: [{
+            translateY: this.state.xPosition.interpolate({
+              inputRange: [0, 1],
+              outputRange: [DEVICE_HEIGHT  , 0]
+            }),
+          }]
+        } ]}>
+      </Animated.View>
     )
   }
 

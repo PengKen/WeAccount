@@ -40,6 +40,20 @@ class CommonFuncs {
 
     }
 }
+
+
+class AccountActions {
+    static getCurrentMonthAccount = () => {
+        return async (dispatch,getState) => {
+            const currentMonthAccounts = await  HomeAPI.getAccountsWithoutSpecific('recently')
+            dispatch({
+                type:'GET_CURRENT_MONTH_ACCOUNT_RECORD',
+                currentMonthAccounts
+            })
+        }
+    }
+}
+
 class HomeActions {
 
 
@@ -89,6 +103,7 @@ class HomeActions {
    */
   static getRecentlyReminds = () => {
     return async (dispatch , getState) => {
+
       const recentlyReminds = await HomeAPI.getReminds()
       dispatch({
         type:'GET_RECENTLY_REMINDS',
@@ -122,11 +137,6 @@ class HomeActions {
               type:'GET_RECENTLY_ACCOUNT_RECORD',
               recentlyAccounts
           })
-
-
-
-
-
     }
   }
 
@@ -155,10 +165,14 @@ class GlobalActions {
 
   static login = (data) => {
     return async (dispatch, getState) => {
-      const token = await GlobalAPI.login(data)
+      const loginResult = await GlobalAPI.login(data)
       dispatch({
           type:'GET_AUTHORIZATION_TOKEN',
-          token:token.token
+          token:loginResult.token,
+          userId:loginResult.userId,
+          phone:data.phone,
+          password:data.password
+
       })
     }
   }
@@ -186,10 +200,10 @@ class GlobalActions {
      */
   static getClientNameList = () => {
     return async (dispatch,getState) => {
-      const clientList = await GlobalAPI.getClientList()
+      const clientNameList = await GlobalAPI.getClientList()
       dispatch({
         type:'GET_CLIENT_LIST',
-        clientList
+        clientNameList
       })
     }
   }

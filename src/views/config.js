@@ -9,12 +9,11 @@ import PersonalScreen from './PersonalScreen'
 import React from "react";
 import {createBottomTabNavigator, createStackNavigator,TabNavigator,createSwitchNavigator} from 'react-navigation'
 import Login from './LoginScreen'
-  import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
-import {View,Text} from 'react-native'
 const middleware = createReactNavigationReduxMiddleware(
   /*
     所有的路由跳转都会经过这些中间件

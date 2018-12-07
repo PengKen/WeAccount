@@ -75,7 +75,7 @@ export default connect(mapStateToProps)(AccountHeader)
 
 const styles = StyleSheet.create({
   container: {
-
+    backgroundColor:'white'
   },
   header:{
     marginTop:IS_IPHONEX ? 0 : scaleSize(30) ,

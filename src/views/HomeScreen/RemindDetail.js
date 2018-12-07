@@ -5,7 +5,6 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, StyleSheet,TouchableOpacity} from 'react-native'
 import {TopSafeView} from "../../components/SafeView";
 import {IS_IPHONEX, THEME_COLOR} from "../../utils/constant";
-import {renderIcon} from "../config";
 import {connect} from 'react-redux'
 import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
 import Toast from 'react-native-root-toast';

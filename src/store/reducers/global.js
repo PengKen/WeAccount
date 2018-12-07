@@ -7,8 +7,11 @@
 
 function global(initialState = {
   cargoNameList:[''],
-  clientList:[''],
-  token:''
+  clientNameList:[''],
+  token:'',
+  userId:'',
+  password:'',
+  phone:''
   },action) {
   switch (action.type){
     case 'GET_CARGO_NAME_LIST':{
@@ -20,7 +23,7 @@ function global(initialState = {
     case 'GET_CLIENT_LIST':{
       return {
         ...initialState,
-        clientList:action.clientList
+          clientNameList:action.clientNameList
       }
     }
     case 'GET_AUTHORIZATION_TOKEN':{
@@ -28,7 +31,8 @@ function global(initialState = {
           ...initialState,
           token:action.token,
           phone:action.phone,
-          password:action.password
+          password:action.password,
+          userId:action.userId
       }
     }
 

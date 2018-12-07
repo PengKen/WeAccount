@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View, Button,StatusBar} from 'react-native';
 import {Search, More, Filter} from "../../icons/Account";
 import {SmallMore} from "../../icons/common";
-import {scaleSize} from "../../utils/px2pt";
+import {scaleHeightSize, scaleSize} from "../../utils/px2pt";
 import {createDrawerNavigator,SafeAreaView,DrawerItems, createStackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
 import {IS_IPHONEX,THEME_COLOR} from '../../utils/constant'
 import {connect} from 'react-redux';
@@ -24,7 +24,7 @@ const CustomDrawerContentComponent = (props) => (
 
 type Props = {};
 
-class FilterScreen extends Component<Props> {
+ class FilterScreen extends Component<Props> {
 
 
   componentWillMount() {
@@ -34,9 +34,12 @@ class FilterScreen extends Component<Props> {
   render() {
 
     return (
-      <View style={styles.container}>
-        <Text>{"Drawer"}</Text>
-      </View>
+      <SafeAreaView style={styles.container}>
+        {/*<StatusBar hidden={true}></StatusBar>*/}
+        <View style={styles.content}>
+          <Text>drawer</Text>
+        </View>
+      </SafeAreaView>
     )
   }
 }
@@ -53,10 +56,9 @@ export {FilterScreen}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'red'
+
+  },
+  content:{
   },
   header: {
     marginTop: scaleSize(30),
