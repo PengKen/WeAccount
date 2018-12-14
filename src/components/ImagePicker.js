@@ -155,7 +155,7 @@ class PhotoPicker extends Component {
                     </View>
                 </TouchableOpacity>
                 <ImagesViewer
-                    imagesa={ this.props.images }
+                    imagesa={ this.state.images }
                     imagesIndex={ this.state.imagesIndex }
                     isImageViewerShow={ this.state.isImageViewerShow}
                     closeImageViewer={ this._closeImageViewer }
