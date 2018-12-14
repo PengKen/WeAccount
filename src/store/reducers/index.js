@@ -3,6 +3,7 @@ import { NavigationActions,DrawerActions } from 'react-navigation';
 import MASK from './mask'
 import HOME from './home'
 import GLOBAL from './global'
+import IMAGES from './images'
 import {RootNavigator, TabNavigatorScreen} from '../../views/config';
 import RemindDetail from "../../views/HomeScreen/RemindDetail";
 
@@ -142,7 +143,8 @@ const AppReducer = combineReducers({
   MASK,
   HOME,
   GLOBAL,
-  TABHISTORY
+  TABHISTORY,
+  IMAGES
 
 });
 

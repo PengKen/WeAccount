@@ -11,7 +11,21 @@ function global(initialState = {
   token:'',
   userId:'',
   password:'',
-  phone:''
+  phone:'',
+  images:[
+      {
+          url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
+          uri:'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460'
+      },
+      {
+          url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
+          uri:'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460'
+      },
+      {
+          url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
+          uri:'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460'
+      },
+  ]
   },action) {
   switch (action.type){
     case 'GET_CARGO_NAME_LIST':{

@@ -16,6 +16,7 @@ import {Store} from '../../../App'
 import {createStackNavigator, NavigationActions} from 'react-navigation';
 import {connect} from "react-redux";
 import maskAction from '../../store/actions/maskAction'
+import ImagesViewer from '../CommonScreen/ImageViewerScreen'
 
 /**
  * Store是一个对象
@@ -44,6 +45,7 @@ const AddStack = createStackNavigator({
   Sell:SellScreen ,
   Buy:BuyScreen,
   Clients: ClientsScreen,
+  ImagesViewerScreen: ImagesViewer
 });
 AddStack.navigationOptions = ({ navigation }) => {
   /*

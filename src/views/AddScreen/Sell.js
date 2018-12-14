@@ -333,24 +333,7 @@ class SellScreen extends Component<Props> {
           />
         </ScrollView>
 
-        <View style={styles.photos}>
-          <FlatList
-              horizontal={true}
-              keyExtractor={(item,index) => index.toString()}
-              data={[1,2,3]}
-            renderItem= {({item,index}) => (
-              <TouchableOpacity
-                  onPress = {(item) => ImagePicker.showImagePicker()}
-                  style={styles.photo}>
-                <View style={{overflow:'visible' }}>
-                    <SmallClose style={{position:'absolute',top:scaleHeightSize(-9),right:scaleSize(-9)}}/>
-                    <View style={{position:'absolute',top:scaleSize(15),height:scaleHeightSize(50),width:2,backgroundColor:"#D8D8D8",left:scaleSize(40)}}></View>
-                    <View style={{position:'absolute',top:scaleHeightSize(40),height:2,width:scaleSize(50),backgroundColor:"#D8D8D8",left:scaleSize(15)}}></View>
-
-                </View>
-            </TouchableOpacity>)}
-          />
-        </View>
+        <ImagePicker  />
 
         <View style={styles.confirmWrapper}>
 
@@ -423,24 +406,7 @@ const styles = StyleSheet.create({
     paddingLeft: scaleSize(20),
     height:scaleHeightSize(130),
   },
-  photos:{
-    marginTop:scaleHeightSize(5),
-    paddingLeft: scaleSize(20),
-    flex:1,
-    flexDirection:'row',
-    overflow: 'visible',
-    position:'relative',
 
-  },
-  photo:{
-    marginRight: scaleSize(10),
-    height:scaleSize(80),
-    width:scaleSize(80),
-    marginTop:10,
-    borderWidth:1,
-    borderColor:"#D8D8D8",
-    borderRadius: 5
-  },
   confirmWrapper:{
     flex:1,
     alignItems: 'center',

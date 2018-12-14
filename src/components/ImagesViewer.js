@@ -9,6 +9,9 @@ import PropTypes from 'prop-types';
 class ImagesViewer extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      images:[]
+    }
   }
 
   static propTypes = {
@@ -26,20 +29,12 @@ class ImagesViewer extends Component {
   }
 
 
-  componentWillMount() {
-    // 上个界面传来的照片集合
-    // const params = this.props.router.getCurrentRoute().params;
-    // const images = params.image;
-    // const pageNum = params.num;
-    // this.setState({
-    //   images: images,
-    //   imageIndex: pageNum,
-    // });
-  }
+
 
   _closeModal = () => {
     this.props.closeImageViewer()
   }
+
 
   render() {
     return (
@@ -48,7 +43,8 @@ class ImagesViewer extends Component {
               animationType={'fade'}
               onRequestClose={this._closeModal} // 适配安卓的物理返回键：按返回键关闭
          >
-        <ImageViewer imageUrls={this.props.images}
+        <ImageViewer
+                     imageUrls={this.props.imagesa}
                      onClick={this._closeModal}
                      onSaveToCamera={()=> console.log("saveing")}
                      index={this.props.imagesIndex}
