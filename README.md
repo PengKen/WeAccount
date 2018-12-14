@@ -17,4 +17,4 @@ babel-plugin-transform-remove-console 插件用来在生产模式下，将所有
 
 **入货选择图片上传并预览**存在一个无法很好解决的bug，即需要进行图片预览的集合无法通过动态setState来修改，  
 只能是完全的静态变量或者是通过redux来进行修改，具体原因尚不可知。报错信息为：  
-![Image text](https://github.com/PengKen/WeAccount.git/blob/master/README-IMG/error1.png)
+![Image text](https://github.com/PengKen/WeAccount/blob/master/README-IMG/error1.png)
